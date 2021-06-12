@@ -2,6 +2,9 @@ import sqlite3
 
 con = sqlite3.connect("testing")
 
+print(type(con))
+con.close()
+exit()
 cur = con.cursor()
 
 cur.execute("create table if not exists dummy (name text, id int) ")

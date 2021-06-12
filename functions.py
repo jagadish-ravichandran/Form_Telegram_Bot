@@ -2,21 +2,17 @@ from telegram.ext import ConversationHandler
 import sqlite3
 from telegram import Update, CallbackQuery
 
+form_id=1
 
 def db_connect():
     db_con = sqlite3.connect('form telegram bot')
     return db_con
-
 
 def start_command(update : Update, context : CallbackQuery):
     if context.args == []:
         user = update.effective_user.id
         context.bot.send_message(chat_id=user, text="I m here for creating forms")
         context.bot.send_message(chat_id=user, text="Type /create to start creating")
-        db_con = db_connect()
-        cursor = db_con.cursor()
-        cursor.execute("create table if not exists ? (question text, answer text)",(user))
-        cursor.close()
         return 0
 
     else:
@@ -111,13 +107,6 @@ def questions_started(update : Update, context : CallbackQuery):
     
     if context.user_data[form]['question iterator'] == question_count-1:
         print(context.user_data)
-
-        #with open("sample.json", "r") as f:
-            #data = json.load(f)
-        os.system("sample.json")
-        with open("sample.json", "w") as f1:
-            #json.dump({}, f1)
-            json.dump(context.user_data,f1)
         
         context.bot.send_message(chat_id = update.message.chat_id, text = "Your form is created !")
         context.bot.send_message(chat_id = update.message.chat_id, text = "Here's is the link !")

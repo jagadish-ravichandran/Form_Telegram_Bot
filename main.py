@@ -1,12 +1,23 @@
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, Filters
 
-from functions import start_command, creating_form, cancel_command, no_of_questions, questions_started, answering, title_of_form
+from functions import db_connect, start_command, creating_form, cancel_command, no_of_questions, questions_started, answering, title_of_form
 
 from telegram import Bot
 
+import sqlite3
 
+
+
+def db_intialize(db : sqlite3.Connection):
+    cur = db.cursor()
+    cur = db.execute('create table if not exists user_table (user_id int primary key, form_id int,form_title text)')
+    #cur = db.execute('create table if not exists form_table (form_id primary key, question_id int)')
+    cur = db.execute('create table if not exists question_table (form_id int references user_table(form_id), question_no int primary key,question text, answer text)')
+    db.commit()
+    db.close()
 
 def main():
+    db_intialize(db_connect())
     api_token = "1869792637:AAHepJn192WKZdpTFC3vOcYZn86nZGsD6iw"
     updater = Updater(api_token, use_context=True)
     
