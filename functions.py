@@ -1,29 +1,26 @@
 from telegram.ext import ConversationHandler
-import os
-import json
+import sqlite3
+from telegram import Update, CallbackQuery
 
 
-def start_command(update, context):
+def db_connect():
+    db_con = sqlite3.connect('form telegram bot')
+    return db_con
+
+
+def start_command(update : Update, context : CallbackQuery):
     if context.args == []:
-        context.bot.send_message(chat_id=update.message.chat_id, text="I m here for creating forms")
-        context.bot.send_message(chat_id=update.message.chat_id, text="Type /create to start creating")
-       
-        with open("userid.json", 'r') as f:
-            data = json.load(f)
-
-            if update.message.chat_id in data['userid']:
-                pass
-            else:
-                data['userid'].append(update.message.chat_id)
-                context.user_data['form count'] = 0
-
-            with open("userid.json", 'w') as f1:
-                json.dump(data, f1)
-
+        user = update.effective_user.id
+        context.bot.send_message(chat_id=user, text="I m here for creating forms")
+        context.bot.send_message(chat_id=user, text="Type /create to start creating")
+        db_con = db_connect()
+        cursor = db_con.cursor()
+        cursor.execute("create table if not exists ? (question text, answer text)",(user))
+        cursor.close()
         return 0
 
     else:
-       
+        '''
         with open("sample.json", "r") as f:
             data = json.load(f)
 
@@ -44,39 +41,30 @@ def start_command(update, context):
                     chat_id=update.message.chat_id, text= "Answers questions one by one !")
 
             return 3
+        '''
 
 
-def creating_form(update, context):
-    context.bot.send_message(chat_id=update.message.chat_id, text="Let's create a form for you !")
-    context.bot.send_message(chat_id=update.message.chat_id, text="Enter the title of the form : ")
+def creating_form(update : Update, context : CallbackQuery):
+    user = update.effective_user.id
+    context.bot.send_message(chat_id = user, text="Let's create a form for you !")
+    context.bot.send_message(chat_id = user, text="Enter the title of the form : ")
     return 4
 
-def title_of_form(update, context):
-    print("success")
-    form_count = context.user_data['form count']
-    form_count += 1
-    context.user_data['form count'] += 1
-    form = f'{update.message.chat_id}_' + str(form_count)
-    context.user_data[form_count] = form
-    context.user_data[form] = {}
-    context.user_data[form]['answered']=[]
+def title_of_form(update : Update, context : CallbackQuery):
+    user = update.effective_user.id
 
     title = update.message.text
-    context.user_data[form]['title'] = title
-    
-    context.bot.send_message(chat_id=update.message.chat_id,
-                             text="Enter no. of questions do you want to add")
 
-    
-    '''with open('forms.txt', 'a') as f:
-        f.write(form)
-        f.write('\n')'''
-    
+    context.bot.send_message(chat_id = user, text = "Enter no. of questions do you want to add")
+    try:
+        question_count = int(update.message.text)
+    except Exception as e:
+        print(e)
     
     return 1
     
 
-def answering(update, context):
+def answering(update : Update, context : CallbackQuery):
 
     answered = update.message.text
     #context.user_data['question1_answer'] = answered
@@ -90,7 +78,7 @@ def answering(update, context):
     return ConversationHandler.END
     
 
-def no_of_questions(update, context):
+def no_of_questions(update : Update, context : CallbackQuery):
 
     form_count = context.user_data['form count']
     form = context.user_data[form_count]
@@ -103,7 +91,7 @@ def no_of_questions(update, context):
     return 2
 
 
-def questions_started(update, context):
+def questions_started(update : Update, context : CallbackQuery):
    
     form_count = context.user_data['form count']
     form = context.user_data[form_count]
@@ -142,5 +130,5 @@ def questions_started(update, context):
         context.user_data[form]['question iterator'] += 1
         return 2
 
-def cancel_command(update,context):
+def cancel_command(update : Update, context : CallbackQuery):
     context.bot.send_message(chat_id=update.message.chat_id, text="Your current operation is cancelled")
