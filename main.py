@@ -10,8 +10,9 @@ import sqlite3
 
 def db_intialize(db : sqlite3.Connection):
     cur = db.cursor()
-    cur = db.execute('create table if not exists user_table (user_id int primary key, form_id int,form_title text)')
-    #cur = db.execute('create table if not exists form_table (form_id primary key, question_id int)')
+    cur = db.execute('create table if not exists user_table (user_id int primary key, form_count int)')
+    cur = db.execute('create table if not exists form_table (form_id int primary key, user_id int references user_table(user_id), question_count int)')
+    cur = db.execute('create table if not exists question_table (form_id int references form_table(form_id), question_id int, question_desc text, primary key (form_id, question_id, question_desc)) ')
     cur = db.execute('create table if not exists question_table (form_id int references user_table(form_id), question_no int primary key,question text, answer text)')
     db.commit()
     db.close()
@@ -36,6 +37,8 @@ def main():
     ))
     
     updater.start_polling()
+
+    
 
 if __name__ == '__main__':
     main()
