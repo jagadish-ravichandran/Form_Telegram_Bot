@@ -53,7 +53,7 @@ def main():
             2 : [MessageHandler(Filters.text, questions_started)],
             3 : [MessageHandler(Filters.text, answering)]
         },
-        fallbacks= [CommandHandler("cancel",cancel_command)]   
+        fallbacks= [MessageHandler(Filters.regex("Cancel"),cancel_command)]   
     ))
     
     updater.start_polling()

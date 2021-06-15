@@ -1,18 +1,20 @@
-from telegram.ext import ConversationHandler
+from telegram.ext import ConversationHandler, CallbackContext
 import sqlite3
-from telegram import Update, CallbackQuery
+from telegram import Update, ReplyKeyboardMarkup, ReplyMarkup
 
-form_id=1
+cancel_markup = ReplyMarkup()
+cancel_button = ReplyKeyboardMarkup([cancel_markup])
 
 def db_connect():
     db_con = sqlite3.connect('form telegram bot')
     return db_con
 
-def start_command(update : Update, context : CallbackQuery):
-    if context.args == []:
+def start_command(update : Update, context : CallbackContext):
+    
+    if not context.args:
         user = update.effective_user.id
         context.bot.send_message(chat_id=user, text="I m here for creating forms")
-        context.bot.send_message(chat_id=user, text="Type /create to start creating")
+        context.bot.send_message(chat_id=user, text="Type /create to start creating", reply_markup=cancel_button)
         return 0
 
     else:
@@ -40,27 +42,30 @@ def start_command(update : Update, context : CallbackQuery):
         '''
 
 
-def creating_form(update : Update, context : CallbackQuery):
+def creating_form(update : Update, context : CallbackContext):
     user = update.effective_user.id
-    context.bot.send_message(chat_id = user, text="Let's create a form for you !")
-    context.bot.send_message(chat_id = user, text="Enter the title of the form : ")
+    context.bot.send_message(chat_id = user, text = "Let's create a form for you !")
+    context.bot.send_message(chat_id = user, text = "Enter the title of the form : ")
+    
     return 4
 
-def title_of_form(update : Update, context : CallbackQuery):
+def title_of_form(update : Update, context : CallbackContext):
     user = update.effective_user.id
 
     title = update.message.text
 
+    context.user_data['title'] = title
     context.bot.send_message(chat_id = user, text = "Enter no. of questions do you want to add")
     try:
         question_count = int(update.message.text)
+        context.user_data['question_count'] = question_count
     except Exception as e:
         print(e)
     
     return 1
     
 
-def answering(update : Update, context : CallbackQuery):
+def answering(update : Update, context : CallbackContext):
 
     answered = update.message.text
     #context.user_data['question1_answer'] = answered
@@ -74,20 +79,20 @@ def answering(update : Update, context : CallbackQuery):
     return ConversationHandler.END
     
 
-def no_of_questions(update : Update, context : CallbackQuery):
+def no_of_questions(update : Update, context : CallbackContext):
+    user = update.effective_user.id
+    update.effective_message.reply_text("Enter your question : ")
 
-    form_count = context.user_data['form count']
-    form = context.user_data[form_count]
-    context.user_data[form]['questions count'] = int(update.message.text)
-    context.user_data[form]['question iterator'] = 0 #TODO change this value to 1 if necessary
-    context.bot.send_message(chat_id=update.message.chat_id,
-                             text="Enter your question")
+
+
+
+
 
     
     return 2
 
 
-def questions_started(update : Update, context : CallbackQuery):
+def questions_started(update : Update, context : CallbackContext):
    
     form_count = context.user_data['form count']
     form = context.user_data[form_count]
@@ -119,5 +124,6 @@ def questions_started(update : Update, context : CallbackQuery):
         context.user_data[form]['question iterator'] += 1
         return 2
 
-def cancel_command(update : Update, context : CallbackQuery):
-    context.bot.send_message(chat_id=update.message.chat_id, text="Your current operation is cancelled")
+def cancel_command(update : Update, context : CallbackContext):
+   update.effective_message.reply_text("Your current operation is cancelled")
+
