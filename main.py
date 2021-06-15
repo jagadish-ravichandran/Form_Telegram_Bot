@@ -10,10 +10,30 @@ import sqlite3
 
 def db_intialize(db : sqlite3.Connection):
     cur = db.cursor()
-    cur = db.execute('create table if not exists user_table (user_id int primary key, form_count int)')
-    cur = db.execute('create table if not exists form_table (form_id int primary key, user_id int references user_table(user_id), question_count int)')
-    cur = db.execute('create table if not exists question_table (form_id int references form_table(form_id), question_id int, question_desc text, primary key (form_id, question_id, question_desc)) ')
-    cur = db.execute('create table if not exists question_table (form_id int references user_table(form_id), question_no int primary key,question text, answer text)')
+    cur = db.execute('''create table if not exists user_table (
+    user_id int primary key, 
+    form_count int not null
+    );''')
+
+    cur = db.execute('''create table if not exists form_table (
+        form_id int primary key, 
+        form_title text not null, 
+        user_id int references user_table(user_id), question_count int
+        );''')
+
+    cur = db.execute('''create table if not exists question_table (
+        form_id int references form_table(form_id), 
+        title text references form_table(form_title), 
+        question_id int not null, 
+        question_desc text not null
+        );''')
+
+    cur = db.execute('''create table if not exists answer_table (
+        user_id int references form_table(user_id), 
+        form_id int references form_table(form_id),
+        answers text not null
+        );''')
+        
     db.commit()
     db.close()
 
