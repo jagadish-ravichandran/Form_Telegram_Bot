@@ -7,6 +7,9 @@ import random
 
 form_id = 1
 
+def show_table(db : sqlite3.Connection, name : str):
+    print(db.execute(f"select * from {name}").fetchall())
+
 def db_connect():
     db_con = sqlite3.connect('form_bot_db')
     return db_con
@@ -18,9 +21,9 @@ def start_command(update : Update, context : CallbackContext):
     
 
     if not context.args:
-        cur = db.execute('select * from user_table where user_id=?',userid)
-        if len(cur.fetchall) == 0:
-            cur = db.execute('insert into user_table values(?,?)',update.effective_user.id, 0)
+        cur = db.execute(f'select * from user_table where user_id={userid}')
+        if len(cur.fetchall()) == 0:
+            cur = db.execute(f'insert into user_table values({userid},0)')
             db.commit()
             db.close()
         update.effective_message.reply_text("I m here for creating forms")
@@ -100,8 +103,6 @@ def questions_started(update : Update, context : CallbackContext):
 
     if context.user_data['current_question'] == context.user_data['question_count']:
         update.effective_message.reply_text("Your questions are saved successfully")
-        return ConversationHandler.END
-
     
     else:
         context.user_data['current_question'] += 1
@@ -117,7 +118,7 @@ def questions_started(update : Update, context : CallbackContext):
     user_form_count = cur.fetchone()[0]
     
     cur = db.execute(f"update user_table set form_count = {user_form_count+1} where user_id = {userid}")
-
+    
     # increasing total form count
     cur = db.execute("select total_forms from bot_data")
 
@@ -131,20 +132,23 @@ def questions_started(update : Update, context : CallbackContext):
     
     title = context.user_data['title']
     qcount = context.user_data['question_count']
+    ft_record = (total_forms,title,userid,qcount)
+    cur = db.execute("insert into form_table values (?,?,?,?)",ft_record)
 
-    cur = db.execute(f"insert into form_table values ({total_forms},{title},{userid}, {qcount})")
-
+    show_table(db, "form_table")
 
     #inserting questions to question table
     for i in range(1,qcount+1):
-        question_desc = context.user_data[i-1]
-        cur = db.execute(f'''insert into question_table (
-            {total_forms}, {title}, {i},{question_desc}
-        )''')
+        question_desc = context.user_data['questions'][i-1]
+        qt_record = (total_forms,title,i,question_desc)
+        cur = db.execute('insert into question_table values(?, ?, ?,?)',qt_record)
 
+    show_table(db, "question_table")
     db.commit()
     db.close()
-    
+
+    return ConversationHandler.END
+
 
 def cancel_command(update : Update, context : CallbackContext):
    update.effective_message.reply_text("Your current operation is cancelled")
