@@ -1,6 +1,6 @@
 import sqlite3
 
-con = sqlite3.connect("testing")
+con = sqlite3.connect("testing_db")
 
 #print(type(con))
 #con.close()

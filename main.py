@@ -6,7 +6,14 @@ from telegram import Bot
 
 import sqlite3
 
+import logging
 
+logging.basicConfig(filename="logs.log",
+    filemode="w", 
+    format= '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.DEBUG)
+
+logger = logging.getLogger(__name__)
 
 def db_intialize(db : sqlite3.Connection):
     cur = db.cursor()
@@ -39,7 +46,7 @@ def db_intialize(db : sqlite3.Connection):
 
 def main():
     db_intialize(db_connect())
-    api_token = "1869792637:AAHepJn192WKZdpTFC3vOcYZn86nZGsD6iw"
+    api_token = "1869792637:AAETw6wyWCNr68OMuUxgkhwMpp-m0dQMoSI"
     updater = Updater(api_token, use_context=True)
     
     d = updater.dispatcher
@@ -57,6 +64,8 @@ def main():
     ))
     
     updater.start_polling()
+
+    updater.idle()
 
     
 

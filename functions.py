@@ -1,20 +1,18 @@
 from telegram.ext import ConversationHandler, CallbackContext
 import sqlite3
 from telegram import Update, ReplyKeyboardMarkup, ReplyMarkup
-
-cancel_markup = ReplyMarkup()
-cancel_button = ReplyKeyboardMarkup([cancel_markup])
+import logging
+from logging import FileHandler
 
 def db_connect():
-    db_con = sqlite3.connect('form telegram bot')
+    db_con = sqlite3.connect('form_bot_db')
     return db_con
 
 def start_command(update : Update, context : CallbackContext):
-    
     if not context.args:
         user = update.effective_user.id
         context.bot.send_message(chat_id=user, text="I m here for creating forms")
-        context.bot.send_message(chat_id=user, text="Type /create to start creating", reply_markup=cancel_button)
+        context.bot.send_message(chat_id=user, text="Type /create to start creating")
         return 0
 
     else:
@@ -46,7 +44,6 @@ def creating_form(update : Update, context : CallbackContext):
     user = update.effective_user.id
     context.bot.send_message(chat_id = user, text = "Let's create a form for you !")
     context.bot.send_message(chat_id = user, text = "Enter the title of the form : ")
-    
     return 4
 
 def title_of_form(update : Update, context : CallbackContext):
@@ -56,11 +53,10 @@ def title_of_form(update : Update, context : CallbackContext):
 
     context.user_data['title'] = title
     context.bot.send_message(chat_id = user, text = "Enter no. of questions do you want to add")
-    try:
-        question_count = int(update.message.text)
-        context.user_data['question_count'] = question_count
-    except Exception as e:
-        print(e)
+    
+    question_count = int(update.message.text)
+    context.user_data['question_count'] = question_count
+
     
     return 1
     
