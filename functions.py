@@ -3,16 +3,28 @@ import sqlite3
 from telegram import Update, ReplyKeyboardMarkup, ReplyMarkup
 import logging
 from logging import FileHandler
+import random
+
+form_id = 1
 
 def db_connect():
     db_con = sqlite3.connect('form_bot_db')
     return db_con
 
 def start_command(update : Update, context : CallbackContext):
+    db = db_connect()
+    cur = db.cursor()
+    userid = int(update.effective_user.id)
+    
+
     if not context.args:
-        user = update.effective_user.id
-        context.bot.send_message(chat_id=user, text="I m here for creating forms")
-        context.bot.send_message(chat_id=user, text="Type /create to start creating")
+        cur = db.execute('select * from user_table where user_id=?',userid)
+        if len(cur.fetchall) == 0:
+            cur = db.execute('insert into user_table values(?,?)',update.effective_user.id, 0)
+            db.commit()
+            db.close()
+        update.effective_message.reply_text("I m here for creating forms")
+        update.effective_message.reply_text("Type /create to start creating")
         return 0
 
     else:
@@ -41,25 +53,17 @@ def start_command(update : Update, context : CallbackContext):
 
 
 def creating_form(update : Update, context : CallbackContext):
-    user = update.effective_user.id
-    context.bot.send_message(chat_id = user, text = "Let's create a form for you !")
-    context.bot.send_message(chat_id = user, text = "Enter the title of the form : ")
-    return 4
+    update.effective_message.reply_text("Lets create forms !")
+    update.effective_message.reply_text("Enter the title for your form : ")
+    return 1
+
 
 def title_of_form(update : Update, context : CallbackContext):
-    user = update.effective_user.id
-
     title = update.message.text
-
     context.user_data['title'] = title
-    context.bot.send_message(chat_id = user, text = "Enter no. of questions do you want to add")
-    
-    question_count = int(update.message.text)
-    context.user_data['question_count'] = question_count
+    update.effective_message.reply_text("Enter no. of questions do you want to add")
+    return 2
 
-    
-    return 1
-    
 
 def answering(update : Update, context : CallbackContext):
 
@@ -76,49 +80,71 @@ def answering(update : Update, context : CallbackContext):
     
 
 def no_of_questions(update : Update, context : CallbackContext):
-    user = update.effective_user.id
-    update.effective_message.reply_text("Enter your question : ")
+   
+    question_count = int(update.message.text)
 
-
-
-
-
-
+    context.user_data['question_count'] = question_count
+    context.user_data['current_question'] = 1
+    context.user_data['questions'] = []
+    update.effective_message.reply_text("Enter questions line by line : ")
+    update.effective_message.reply_text(f"Enter your question number {context.user_data['current_question']}")
     
-    return 2
+    return 3
 
 
 def questions_started(update : Update, context : CallbackContext):
-   
-    form_count = context.user_data['form count']
-    form = context.user_data[form_count]
-    
-    question_count = context.user_data[form]['questions count']
-    
-    context.user_data[form][context.user_data[form]
-                            ['question iterator']] = update.message.text
-
-    '''with open('forms.txt', 'a') as f:
-        f.write(
-            str(context.user_data[form]['question iterator']) + " : " + update.message.text)
-        f.write('\n')'''
+    question = update.effective_message.text
+    context.user_data['questions'].append(question)
+    logging.info(context.user_data)
 
 
-    #counter = context.user_data[form]['question iterator']
-    
-    if context.user_data[form]['question iterator'] == question_count-1:
-        print(context.user_data)
-        
-        context.bot.send_message(chat_id = update.message.chat_id, text = "Your form is created !")
-        context.bot.send_message(chat_id = update.message.chat_id, text = "Here's is the link !")
-        context.bot.send_message(chat_id = update.message.chat_id, text = f"https://t.me/Dummy1sbot?start={form}")
+    if context.user_data['current_question'] == context.user_data['question_count']:
+        update.effective_message.reply_text("Your questions are saved successfully")
         return ConversationHandler.END
 
+    
     else:
-        context.bot.send_message(chat_id=update.message.chat_id,
-                                 text="Enter your question")
-        context.user_data[form]['question iterator'] += 1
-        return 2
+        context.user_data['current_question'] += 1
+        update.effective_message.reply_text(f"Enter your question number {context.user_data['current_question']}")
+        return 3
+
+    userid = update.effective_user.id
+    db = db_connect()
+
+    # increasing user form count
+    cur = db.execute(f"select form_count from user_table where user_id = {userid}")
+    
+    user_form_count = cur.fetchone()[0]
+    
+    cur = db.execute(f"update user_table set form_count = {user_form_count+1} where user_id = {userid}")
+
+    # increasing total form count
+    cur = db.execute("select total_forms from bot_data")
+
+    total_forms = cur.fetchone()[0]
+
+    total_forms += 1
+
+    cur = db.execute(f"update bot_data set total_forms = {total_forms}")
+
+    #generating form id and inserting to form table
+    
+    title = context.user_data['title']
+    qcount = context.user_data['question_count']
+
+    cur = db.execute(f"insert into form_table values ({total_forms},{title},{userid}, {qcount})")
+
+
+    #inserting questions to question table
+    for i in range(1,qcount+1):
+        question_desc = context.user_data[i-1]
+        cur = db.execute(f'''insert into question_table (
+            {total_forms}, {title}, {i},{question_desc}
+        )''')
+
+    db.commit()
+    db.close()
+    
 
 def cancel_command(update : Update, context : CallbackContext):
    update.effective_message.reply_text("Your current operation is cancelled")
