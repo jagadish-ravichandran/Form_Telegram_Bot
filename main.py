@@ -10,13 +10,27 @@ import logging
 
 logging.basicConfig(filename="logs.log",
     filemode="w", 
-    format= '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format= '[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
     level=logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 
 def db_intialize(db : sqlite3.Connection):
     cur = db.cursor()
+    
+    cur = db.execute('''
+        create table if not exists bot_data (
+            total_forms int
+        )
+    ''')
+
+    cur = db.execute("select * from bot_data")
+
+    if len(cur.fetchall()) == 0:
+        cur = db.execute('''
+            insert into bot_data (0)
+        ''')
+    
     cur = db.execute('''create table if not exists user_table (
     user_id int primary key, 
     form_count int not null
@@ -55,10 +69,10 @@ def main():
         entry_points=[(CommandHandler("start", start_command))],
         states={
             0 : [(CommandHandler("create", creating_form))],
-            4 : [MessageHandler(Filters.text, title_of_form)],
-            1: [MessageHandler(Filters.regex('[0-9]'), no_of_questions)],
-            2 : [MessageHandler(Filters.text, questions_started)],
-            3 : [MessageHandler(Filters.text, answering)]
+            1 : [MessageHandler(Filters.text, title_of_form)],
+            2: [MessageHandler(Filters.regex('[0-9]'), no_of_questions)],
+            3 : [MessageHandler(Filters.text, questions_started)],
+            4 : [MessageHandler(Filters.text, answering)]
         },
         fallbacks= [MessageHandler(Filters.regex("Cancel"),cancel_command)]   
     ))
