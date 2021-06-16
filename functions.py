@@ -135,7 +135,7 @@ def questions_started(update : Update, context : CallbackContext):
     ft_record = (total_forms,title,userid,qcount)
     cur = db.execute("insert into form_table values (?,?,?,?)",ft_record)
 
-    show_table(db, "form_table")
+    #show_table(db, "form_table")
 
     #inserting questions to question table
     for i in range(1,qcount+1):
@@ -143,11 +143,17 @@ def questions_started(update : Update, context : CallbackContext):
         qt_record = (total_forms,title,i,question_desc)
         cur = db.execute('insert into question_table values(?, ?, ?,?)',qt_record)
 
-    show_table(db, "question_table")
+    #show_table(db, "question_table")
     db.commit()
     db.close()
 
+
     return ConversationHandler.END
+
+def display_form(formid, userid) -> list:
+    db = db_connect()
+    cur = db.execute("select ")
+    
 
 
 def cancel_command(update : Update, context : CallbackContext):
