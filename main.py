@@ -28,7 +28,7 @@ def db_intialize(db : sqlite3.Connection):
 
     if len(cur.fetchall()) == 0:
         cur = db.execute('''
-            insert into bot_data (0)
+            insert into bot_data values(0)
         ''')
     
     cur = db.execute('''create table if not exists user_table (
