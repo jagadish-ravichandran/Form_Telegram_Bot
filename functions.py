@@ -116,8 +116,9 @@ def questions_started(update : Update, context : CallbackContext):
     cur = db.execute(f"select form_count from user_table where user_id = {userid}")
     
     user_form_count = cur.fetchone()[0]
+    user_form_count += 1
     
-    cur = db.execute(f"update user_table set form_count = {user_form_count+1} where user_id = {userid}")
+    cur = db.execute(f"update user_table set form_count = {user_form_count} where user_id = {userid}")
     
     # increasing total form count
     cur = db.execute("select total_forms from bot_data")
@@ -142,17 +143,39 @@ def questions_started(update : Update, context : CallbackContext):
         question_desc = context.user_data['questions'][i-1]
         qt_record = (total_forms,title,i,question_desc)
         cur = db.execute('insert into question_table values(?, ?, ?,?)',qt_record)
-
-    #show_table(db, "question_table")
+    
     db.commit()
-    db.close()
+    
+    # displaying the last generated form
+    
+    ### while updating schema,take care of this ordering
 
+    last_form = display_form(user_form_count, userid)
+    update.effective_message.reply_text(f"Form title : {last_form[0][1]}")
+    update.effective_message.reply_text("Questions : ")
+    for i in last_form:
+        update.effective_message.reply_text(f"{i[2]} - {i[3]}")
+
+    form_link = f"https://t.me/form_telebot?start={userid}_{total_forms}"
+
+    update.effective_message.reply_text(f"Your link for this for : {form_link}\n You can send this link to others to get the answers from them")
+    
+    db.close()
 
     return ConversationHandler.END
 
 def display_form(formid, userid) -> list:
     db = db_connect()
-    cur = db.execute("select ")
+    cur = db.cursor()
+    if formid is None:
+        cur = db.execute(f"select qt.* from question_table qt,form_table ft where ft.user_id = {userid} and qt.form_id = ft.form_id")
+    
+    else:
+        cur = db.execute(f"select qt.* from question_table qt, form_table ft where ft.user_id={userid} and ft.form_id = {formid} and qt.form_id = {formid}")
+    #cur = db.execute("select * from question table where form_")
+    result = cur.fetchall()
+    db.close()
+    return result
     
 
 
