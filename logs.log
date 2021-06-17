@@ -1,183 +1,176 @@
-[2021-06-16 20:34:27,542] DEBUG [telegram.ext.dispatcher._set_singleton:340] Setting singleton dispatcher as <telegram.ext.dispatcher.Dispatcher object at 0x7f77499eba00>
-[2021-06-16 20:34:27,543] INFO [apscheduler.scheduler.start:166] Scheduler started
-[2021-06-16 20:34:27,543] DEBUG [apscheduler.scheduler._process_jobs:940] Looking for jobs to run
-[2021-06-16 20:34:27,543] DEBUG [telegram.bot.decorator:128] Entering: get_me
-[2021-06-16 20:34:27,544] DEBUG [apscheduler.scheduler._process_jobs:1016] No jobs; waiting until a job is added
-[2021-06-16 20:34:28,058] DEBUG [telegram.bot.decorator:130] {'supports_inline_queries': False, 'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'can_read_all_group_messages': False, 'username': 'form_telebot', 'can_join_groups': True}
-[2021-06-16 20:34:28,058] DEBUG [telegram.bot.decorator:131] Exiting: get_me
-[2021-06-16 20:34:28,059] DEBUG [telegram.ext.updater._thread_wrapper:351] Bot:1869792637:dispatcher - started
-[2021-06-16 20:34:28,059] DEBUG [telegram.ext.updater._thread_wrapper:351] Bot:1869792637:updater - started
-[2021-06-16 20:34:28,059] DEBUG [telegram.ext.updater.start_polling:435] Waiting for Dispatcher and polling to start
-[2021-06-16 20:34:28,059] DEBUG [telegram.ext.updater._start_polling:585] Updater thread started (polling)
-[2021-06-16 20:34:28,060] DEBUG [telegram.ext.updater._network_loop_retry:642] Start network loop retry bootstrap del webhook
-[2021-06-16 20:34:28,060] DEBUG [telegram.ext.updater.bootstrap_del_webhook:760] Deleting webhook
-[2021-06-16 20:34:28,060] DEBUG [telegram.bot.decorator:128] Entering: delete_webhook
-[2021-06-16 20:34:28,062] DEBUG [telegram.ext.dispatcher.start:466] Dispatcher started
-[2021-06-16 20:34:28,234] DEBUG [telegram.bot.decorator:130] True
-[2021-06-16 20:34:28,235] DEBUG [telegram.bot.decorator:131] Exiting: delete_webhook
-[2021-06-16 20:34:28,235] DEBUG [telegram.ext.updater._start_polling:594] Bootstrap done
-[2021-06-16 20:34:28,235] DEBUG [telegram.ext.updater._network_loop_retry:642] Start network loop retry getting Updates
-[2021-06-16 20:34:28,235] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:32,689] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219186]
-[2021-06-16 20:34:32,689] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef880>]
-[2021-06-16 20:34:32,690] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:34:32,690] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:32,690] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 381, 'new_chat_members': [], 'text': '/start', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}], 'photo': [], 'date': 1623855872, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219186}
-[2021-06-16 20:34:32,691] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state None
-[2021-06-16 20:34:32,692] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:33,366] DEBUG [telegram.bot.decorator:130] {'message_id': 382, 'new_chat_members': [], 'text': 'I m here for creating forms', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855873, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:33,366] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:33,366] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:33,716] DEBUG [telegram.bot.decorator:130] {'message_id': 383, 'new_chat_members': [], 'text': 'Type /create to start creating', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [{'offset': 5, 'length': 7, 'type': 'bot_command'}], 'photo': [], 'date': 1623855873, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:33,717] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:34,468] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219187]
-[2021-06-16 20:34:34,468] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef940>]
-[2021-06-16 20:34:34,468] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:34:34,469] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:34,469] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 384, 'new_chat_members': [], 'text': '/create', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [{'offset': 0, 'length': 7, 'type': 'bot_command'}], 'photo': [], 'date': 1623855874, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219187}
-[2021-06-16 20:34:34,469] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 0
-[2021-06-16 20:34:34,470] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:34,835] DEBUG [telegram.bot.decorator:130] {'message_id': 385, 'new_chat_members': [], 'text': 'Lets create forms !', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855874, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:34,835] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:34,835] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:35,184] DEBUG [telegram.bot.decorator:130] {'message_id': 386, 'new_chat_members': [], 'text': 'Enter the title for your form :', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855874, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:35,184] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:38,159] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219188]
-[2021-06-16 20:34:38,160] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef880>]
-[2021-06-16 20:34:38,160] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:34:38,160] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:38,160] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 387, 'new_chat_members': [], 'text': 'attendance', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855877, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219188}
-[2021-06-16 20:34:38,161] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 1
-[2021-06-16 20:34:38,161] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:38,543] DEBUG [telegram.bot.decorator:130] {'message_id': 388, 'new_chat_members': [], 'text': 'Enter no. of questions do you want to add', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855878, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:38,544] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:40,482] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219189]
-[2021-06-16 20:34:40,482] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef940>]
-[2021-06-16 20:34:40,482] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:34:40,482] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:40,482] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 389, 'new_chat_members': [], 'text': '2', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855880, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219189}
-[2021-06-16 20:34:40,483] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 2
-[2021-06-16 20:34:40,483] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:40,834] DEBUG [telegram.bot.decorator:130] {'message_id': 390, 'new_chat_members': [], 'text': 'Enter questions line by line :', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855880, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:40,834] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:40,835] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:41,223] DEBUG [telegram.bot.decorator:130] {'message_id': 391, 'new_chat_members': [], 'text': 'Enter your question number 1', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855881, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:41,223] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:43,376] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219190]
-[2021-06-16 20:34:43,376] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef880>]
-[2021-06-16 20:34:43,401] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:34:43,401] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:43,401] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 392, 'new_chat_members': [], 'text': 'name ?', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855883, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219190}
-[2021-06-16 20:34:43,402] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 3
-[2021-06-16 20:34:43,402] INFO [root.questions_started:101] {'title': 'attendance', 'question_count': 2, 'current_question': 1, 'questions': ['name ?']}
-[2021-06-16 20:34:43,402] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:43,800] DEBUG [telegram.bot.decorator:130] {'message_id': 393, 'new_chat_members': [], 'text': 'Enter your question number 2', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855883, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:43,800] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:46,161] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219191]
-[2021-06-16 20:34:46,162] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef940>]
-[2021-06-16 20:34:46,162] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:34:46,162] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:46,162] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 394, 'new_chat_members': [], 'text': 'dept ?', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855885, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219191}
-[2021-06-16 20:34:46,163] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 3
-[2021-06-16 20:34:46,163] INFO [root.questions_started:101] {'title': 'attendance', 'question_count': 2, 'current_question': 2, 'questions': ['name ?', 'dept ?']}
-[2021-06-16 20:34:46,163] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:46,521] DEBUG [telegram.bot.decorator:130] {'message_id': 395, 'new_chat_members': [], 'text': 'Your questions are saved successfully', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855886, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:46,521] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:49,001] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219192]
-[2021-06-16 20:34:49,002] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef880>]
-[2021-06-16 20:34:49,002] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:34:49,004] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:49,004] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 396, 'new_chat_members': [], 'text': '/start', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}], 'photo': [], 'date': 1623855888, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219192}
-[2021-06-16 20:34:49,005] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state None
-[2021-06-16 20:34:49,005] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:49,423] DEBUG [telegram.bot.decorator:130] {'message_id': 397, 'new_chat_members': [], 'text': 'I m here for creating forms', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855889, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:49,424] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:49,424] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:49,781] DEBUG [telegram.bot.decorator:130] {'message_id': 398, 'new_chat_members': [], 'text': 'Type /create to start creating', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [{'offset': 5, 'length': 7, 'type': 'bot_command'}], 'photo': [], 'date': 1623855889, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:49,781] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:51,089] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219193]
-[2021-06-16 20:34:51,089] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499efe80>]
-[2021-06-16 20:34:51,089] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:34:51,089] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:34:51,090] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 399, 'new_chat_members': [], 'text': '/create', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [{'offset': 0, 'length': 7, 'type': 'bot_command'}], 'photo': [], 'date': 1623855890, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219193}
-[2021-06-16 20:34:51,090] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 0
-[2021-06-16 20:34:51,090] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:51,442] DEBUG [telegram.bot.decorator:130] {'message_id': 400, 'new_chat_members': [], 'text': 'Lets create forms !', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855891, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:51,443] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:34:51,443] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:34:51,789] DEBUG [telegram.bot.decorator:130] {'message_id': 401, 'new_chat_members': [], 'text': 'Enter the title for your form :', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855891, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:34:51,789] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:35:01,265] DEBUG [telegram.bot.get_updates:2826] No new updates found.
-[2021-06-16 20:35:01,265] DEBUG [telegram.bot.decorator:130] []
-[2021-06-16 20:35:01,266] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:35:01,266] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:35:01,565] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219194]
-[2021-06-16 20:35:01,565] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef880>]
-[2021-06-16 20:35:01,565] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:35:01,565] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:35:01,566] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 402, 'new_chat_members': [], 'text': 'resume', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855901, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219194}
-[2021-06-16 20:35:01,566] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 1
-[2021-06-16 20:35:01,566] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:35:01,929] DEBUG [telegram.bot.decorator:130] {'message_id': 403, 'new_chat_members': [], 'text': 'Enter no. of questions do you want to add', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855901, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:35:01,930] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:35:03,630] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219195]
-[2021-06-16 20:35:03,631] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499efe80>]
-[2021-06-16 20:35:03,631] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:35:03,631] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:35:03,631] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 404, 'new_chat_members': [], 'text': '2', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855903, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219195}
-[2021-06-16 20:35:03,632] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 2
-[2021-06-16 20:35:03,632] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:35:04,027] DEBUG [telegram.bot.decorator:130] {'message_id': 405, 'new_chat_members': [], 'text': 'Enter questions line by line :', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855903, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:35:04,028] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:35:04,028] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:35:04,432] DEBUG [telegram.bot.decorator:130] {'message_id': 406, 'new_chat_members': [], 'text': 'Enter your question number 1', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855904, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:35:04,432] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:35:05,979] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219196]
-[2021-06-16 20:35:05,980] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499ef940>]
-[2021-06-16 20:35:05,980] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:35:05,980] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:35:05,980] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 407, 'new_chat_members': [], 'text': 'name ?', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855905, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219196}
-[2021-06-16 20:35:05,981] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 3
-[2021-06-16 20:35:05,981] INFO [root.questions_started:101] {'title': 'resume', 'question_count': 2, 'current_question': 1, 'questions': ['name ?']}
-[2021-06-16 20:35:05,981] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:35:06,335] DEBUG [telegram.bot.decorator:130] {'message_id': 408, 'new_chat_members': [], 'text': 'Enter your question number 2', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855906, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:35:06,336] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:35:07,958] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219197]
-[2021-06-16 20:35:07,959] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7f77499efe80>]
-[2021-06-16 20:35:07,959] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:35:07,959] DEBUG [telegram.bot.decorator:128] Entering: get_updates
-[2021-06-16 20:35:07,959] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'message': {'message_id': 409, 'new_chat_members': [], 'text': 'age ?', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855907, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 576048895, 'first_name': 'Jagz', 'is_bot': False, 'username': 'the_whitedevil', 'language_code': 'en'}}, 'update_id': 676219197}
-[2021-06-16 20:35:07,959] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (576048895, 576048895) with state 3
-[2021-06-16 20:35:07,960] INFO [root.questions_started:101] {'title': 'resume', 'question_count': 2, 'current_question': 2, 'questions': ['name ?', 'age ?']}
-[2021-06-16 20:35:07,960] DEBUG [telegram.bot.decorator:128] Entering: send_message
-[2021-06-16 20:35:08,371] DEBUG [telegram.bot.decorator:130] {'message_id': 410, 'new_chat_members': [], 'text': 'Your questions are saved successfully', 'delete_chat_photo': False, 'new_chat_photo': [], 'chat': {'id': 576048895, 'type': 'private', 'username': 'the_whitedevil', 'first_name': 'Jagz'}, 'supergroup_chat_created': False, 'entities': [], 'photo': [], 'date': 1623855908, 'channel_chat_created': False, 'caption_entities': [], 'group_chat_created': False, 'from': {'id': 1869792637, 'first_name': 'Form Bot', 'is_bot': True, 'username': 'form_telebot'}}
-[2021-06-16 20:35:08,372] DEBUG [telegram.bot.decorator:131] Exiting: send_message
-[2021-06-16 20:35:11,774] INFO [telegram.ext.updater._signal_handler:858] Received signal 2 (SIGINT), stopping...
-[2021-06-16 20:35:11,774] INFO [apscheduler.scheduler.shutdown:198] Scheduler has been shut down
-[2021-06-16 20:35:11,774] DEBUG [apscheduler.scheduler._process_jobs:940] Looking for jobs to run
-[2021-06-16 20:35:11,774] DEBUG [apscheduler.scheduler._process_jobs:1016] No jobs; waiting until a job is added
-[2021-06-16 20:35:11,774] DEBUG [telegram.ext.updater.stop:818] Stopping Updater and Dispatcher...
-[2021-06-16 20:35:11,774] DEBUG [telegram.ext.updater._stop_dispatcher:843] Requesting Dispatcher to stop...
-[2021-06-16 20:35:12,504] DEBUG [telegram.ext.dispatcher.start:477] orderly stopping
-[2021-06-16 20:35:12,504] DEBUG [telegram.ext.dispatcher.start:489] Dispatcher thread stopped
-[2021-06-16 20:35:12,504] DEBUG [telegram.ext.updater._thread_wrapper:358] Bot:1869792637:dispatcher - ended
-[2021-06-16 20:35:12,576] DEBUG [telegram.ext.dispatcher.stop:509] Waiting for async thread 1/4 to end
-[2021-06-16 20:35:12,576] DEBUG [telegram.ext.dispatcher._pooled:365] Closing run_async thread Bot:1869792637:worker:2125abda-cdde-4610-9323-aeac5ee408a7_0/4
-[2021-06-16 20:35:12,576] DEBUG [telegram.ext.dispatcher._pooled:365] Closing run_async thread Bot:1869792637:worker:2125abda-cdde-4610-9323-aeac5ee408a7_1/4
-[2021-06-16 20:35:12,576] DEBUG [telegram.ext.dispatcher._pooled:365] Closing run_async thread Bot:1869792637:worker:2125abda-cdde-4610-9323-aeac5ee408a7_2/4
-[2021-06-16 20:35:12,576] DEBUG [telegram.ext.dispatcher._pooled:365] Closing run_async thread Bot:1869792637:worker:2125abda-cdde-4610-9323-aeac5ee408a7_3/4
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.dispatcher.stop:512] async thread 1/4 has ended
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.dispatcher.stop:509] Waiting for async thread 2/4 to end
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.dispatcher.stop:512] async thread 2/4 has ended
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.dispatcher.stop:509] Waiting for async thread 3/4 to end
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.dispatcher.stop:512] async thread 3/4 has ended
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.dispatcher.stop:509] Waiting for async thread 4/4 to end
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.dispatcher.stop:512] async thread 4/4 has ended
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.updater._join_threads:849] Waiting for Bot:1869792637:dispatcher thread to end
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.updater._join_threads:851] Bot:1869792637:dispatcher thread has ended
-[2021-06-16 20:35:12,577] DEBUG [telegram.ext.updater._join_threads:849] Waiting for Bot:1869792637:updater thread to end
-[2021-06-16 20:35:18,127] DEBUG [telegram.bot.get_updates:2826] No new updates found.
-[2021-06-16 20:35:18,127] DEBUG [telegram.bot.decorator:130] []
-[2021-06-16 20:35:18,127] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
-[2021-06-16 20:35:18,127] DEBUG [telegram.ext.updater._thread_wrapper:358] Bot:1869792637:updater - ended
-[2021-06-16 20:35:18,127] DEBUG [telegram.ext.updater._join_threads:851] Bot:1869792637:updater thread has ended
+[2021-06-17 11:47:37,530] DEBUG [telegram.ext.dispatcher._set_singleton:340] Setting singleton dispatcher as <telegram.ext.dispatcher.Dispatcher object at 0x7fb03ed24ee0>
+[2021-06-17 11:47:37,531] INFO [apscheduler.scheduler.start:166] Scheduler started
+[2021-06-17 11:47:37,531] DEBUG [apscheduler.scheduler._process_jobs:940] Looking for jobs to run
+[2021-06-17 11:47:37,531] DEBUG [apscheduler.scheduler._process_jobs:1016] No jobs; waiting until a job is added
+[2021-06-17 11:47:37,532] DEBUG [telegram.bot.decorator:128] Entering: get_me
+[2021-06-17 11:47:38,155] DEBUG [telegram.bot.decorator:130] {'id': 1869792637, 'is_bot': True, 'can_join_groups': True, 'first_name': 'Form Bot', 'supports_inline_queries': False, 'can_read_all_group_messages': False, 'username': 'form_telebot'}
+[2021-06-17 11:47:38,155] DEBUG [telegram.bot.decorator:131] Exiting: get_me
+[2021-06-17 11:47:38,156] DEBUG [telegram.ext.updater._thread_wrapper:351] Bot:1869792637:dispatcher - started
+[2021-06-17 11:47:38,157] DEBUG [telegram.ext.updater._thread_wrapper:351] Bot:1869792637:updater - started
+[2021-06-17 11:47:38,157] DEBUG [telegram.ext.updater._start_polling:585] Updater thread started (polling)
+[2021-06-17 11:47:38,158] DEBUG [telegram.ext.updater.start_polling:435] Waiting for Dispatcher and polling to start
+[2021-06-17 11:47:38,158] DEBUG [telegram.ext.updater._network_loop_retry:642] Start network loop retry bootstrap del webhook
+[2021-06-17 11:47:38,159] DEBUG [telegram.ext.updater.bootstrap_del_webhook:760] Deleting webhook
+[2021-06-17 11:47:38,159] DEBUG [telegram.bot.decorator:128] Entering: delete_webhook
+[2021-06-17 11:47:38,161] DEBUG [telegram.ext.dispatcher.start:466] Dispatcher started
+[2021-06-17 11:47:38,342] DEBUG [telegram.bot.decorator:130] True
+[2021-06-17 11:47:38,342] DEBUG [telegram.bot.decorator:131] Exiting: delete_webhook
+[2021-06-17 11:47:38,343] DEBUG [telegram.ext.updater._start_polling:594] Bootstrap done
+[2021-06-17 11:47:38,343] DEBUG [telegram.ext.updater._network_loop_retry:642] Start network loop retry getting Updates
+[2021-06-17 11:47:38,343] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:47:48,518] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:47:48,518] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:47:48,518] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:47:48,518] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:47:50,799] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219325]
+[2021-06-17 11:47:50,800] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7fb03ec837c0>]
+[2021-06-17 11:47:50,800] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:47:50,800] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:47:50,800] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'update_id': 676219325, 'message': {'supergroup_chat_created': False, 'message_id': 769, 'text': '/view_forms', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'bot_command', 'length': 11, 'offset': 0}], 'caption_entities': [], 'date': 1623910670, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 711465019, 'language_code': 'en', 'is_bot': False, 'first_name': 'Nithish', 'last_name': 'Kanna'}}}
+[2021-06-17 11:47:50,802] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state None
+[2021-06-17 11:47:50,803] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:51,495] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 770, 'text': 'Form 1 : \n\nTitle : heheh\n1. durbe\n2. hebe\nhttps://t.me/form_telebot?start=711465019_7', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'url', 'length': 43, 'offset': 42}], 'caption_entities': [], 'date': 1623910671, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:51,495] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:47:51,496] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:51,869] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 771, 'text': 'Form 2 : \n\nTitle : yehe\n1. uddb\n2. dhdnd\nhttps://t.me/form_telebot?start=711465019_8', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'url', 'length': 43, 'offset': 41}], 'caption_entities': [], 'date': 1623910671, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:51,869] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:47:51,870] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:52,382] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 772, 'text': 'Form 3 : \n\nTitle : rdd\n1. hshs\nhttps://t.me/form_telebot?start=711465019_9', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'url', 'length': 43, 'offset': 31}], 'caption_entities': [], 'date': 1623910672, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:52,382] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:47:52,382] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:52,751] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 773, 'text': 'Form 4 : \n\nTitle : hebebe\n1. helooo\nhttps://t.me/form_telebot?start=711465019_10', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'url', 'length': 44, 'offset': 36}], 'caption_entities': [], 'date': 1623910672, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:52,751] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:47:52,751] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:53,112] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 774, 'text': 'Form 5 : \n\nTitle : hdbd\n1. ydbee\n2. ebeb\nhttps://t.me/form_telebot?start=711465019_11', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'url', 'length': 44, 'offset': 41}], 'caption_entities': [], 'date': 1623910672, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:53,112] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:47:53,112] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:53,476] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 775, 'text': 'Form 6 : \n\nTitle : ddd\n1. hebebe\n2. ehebe\nhttps://t.me/form_telebot?start=711465019_12', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'url', 'length': 44, 'offset': 42}], 'caption_entities': [], 'date': 1623910673, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:53,477] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:47:57,641] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219326]
+[2021-06-17 11:47:57,642] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7fb03ec83640>]
+[2021-06-17 11:47:57,642] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:47:57,643] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:47:57,643] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'update_id': 676219326, 'message': {'supergroup_chat_created': False, 'message_id': 776, 'text': '/create', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'bot_command', 'length': 7, 'offset': 0}], 'caption_entities': [], 'date': 1623910677, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 711465019, 'language_code': 'en', 'is_bot': False, 'first_name': 'Nithish', 'last_name': 'Kanna'}}}
+[2021-06-17 11:47:57,644] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state None
+[2021-06-17 11:47:57,644] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state None
+[2021-06-17 11:47:57,645] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:57,995] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 777, 'text': 'Lets create forms !', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910677, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:57,996] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:47:57,996] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:58,349] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 778, 'text': 'Enter the title for your form :', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910678, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:58,350] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:47:59,496] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219327]
+[2021-06-17 11:47:59,497] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7fb03ec837c0>]
+[2021-06-17 11:47:59,497] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:47:59,497] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:47:59,498] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'update_id': 676219327, 'message': {'supergroup_chat_created': False, 'message_id': 779, 'text': 'yveve', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910679, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 711465019, 'language_code': 'en', 'is_bot': False, 'first_name': 'Nithish', 'last_name': 'Kanna'}}}
+[2021-06-17 11:47:59,498] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state None
+[2021-06-17 11:47:59,499] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state 1
+[2021-06-17 11:47:59,499] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:47:59,847] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 780, 'text': 'Enter no. of questions do you want to add', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910679, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:47:59,847] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:48:00,566] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219328]
+[2021-06-17 11:48:00,566] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7fb03ec83640>]
+[2021-06-17 11:48:00,567] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:48:00,567] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:48:00,567] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'update_id': 676219328, 'message': {'supergroup_chat_created': False, 'message_id': 781, 'text': '1', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910680, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 711465019, 'language_code': 'en', 'is_bot': False, 'first_name': 'Nithish', 'last_name': 'Kanna'}}}
+[2021-06-17 11:48:00,568] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state None
+[2021-06-17 11:48:00,568] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state 2
+[2021-06-17 11:48:00,569] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:48:00,921] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 782, 'text': 'Enter questions line by line :', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910680, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:48:00,922] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:48:00,922] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:48:01,271] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 783, 'text': 'Enter your question number 1', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910681, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:48:01,271] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:48:01,375] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219329]
+[2021-06-17 11:48:01,376] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7fb03ec83880>]
+[2021-06-17 11:48:01,376] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:48:01,376] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:48:01,376] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'update_id': 676219329, 'message': {'supergroup_chat_created': False, 'message_id': 784, 'text': 'hebe', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910681, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 711465019, 'language_code': 'en', 'is_bot': False, 'first_name': 'Nithish', 'last_name': 'Kanna'}}}
+[2021-06-17 11:48:01,377] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state None
+[2021-06-17 11:48:01,377] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state 3
+[2021-06-17 11:48:01,378] INFO [root.questions_started:97] {'title': 'yveve', 'question_count': 1, 'current_question': 1, 'questions': ['hebe']}
+[2021-06-17 11:48:01,378] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:48:01,731] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 785, 'text': 'Your questions are saved successfully', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [], 'caption_entities': [], 'date': 1623910681, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:48:01,732] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:48:01,820] DEBUG [telegram.bot.decorator:128] Entering: send_message
+[2021-06-17 11:48:02,206] DEBUG [telegram.bot.decorator:130] {'supergroup_chat_created': False, 'message_id': 786, 'text': 'Form 7 : \n\nTitle : yveve\n1. hebe\nhttps://t.me/form_telebot?start=711465019_13', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'url', 'length': 44, 'offset': 33}], 'caption_entities': [], 'date': 1623910682, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 1869792637, 'is_bot': True, 'first_name': 'Form Bot', 'username': 'form_telebot'}}
+[2021-06-17 11:48:02,206] DEBUG [telegram.bot.decorator:131] Exiting: send_message
+[2021-06-17 11:48:11,546] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:48:11,546] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:48:11,547] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:48:11,547] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:48:21,712] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:48:21,712] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:48:21,713] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:48:21,713] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:48:31,880] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:48:31,880] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:48:31,880] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:48:31,880] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:48:36,286] DEBUG [telegram.bot.get_updates:2824] Getting updates: [676219330]
+[2021-06-17 11:48:36,287] DEBUG [telegram.bot.decorator:130] [<telegram.update.Update object at 0x7fb03ec83640>]
+[2021-06-17 11:48:36,287] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:48:36,287] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:48:36,288] DEBUG [telegram.ext.dispatcher.start:484] Processing Update: {'update_id': 676219330, 'message': {'supergroup_chat_created': False, 'message_id': 787, 'text': '/start 711465019_13', 'new_chat_photo': [], 'photo': [], 'group_chat_created': False, 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'entities': [{'type': 'bot_command', 'length': 6, 'offset': 0}], 'caption_entities': [], 'date': 1623910716, 'chat': {'type': 'private', 'last_name': 'Kanna', 'id': 711465019, 'first_name': 'Nithish'}, 'from': {'id': 711465019, 'language_code': 'en', 'is_bot': False, 'first_name': 'Nithish', 'last_name': 'Kanna'}}}
+[2021-06-17 11:48:36,289] DEBUG [telegram.ext.conversationhandler.check_update:558] selecting conversation (711465019, 711465019) with state None
+[2021-06-17 11:48:46,454] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:48:46,454] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:48:46,454] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:48:46,454] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:48:56,624] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:48:56,624] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:48:56,624] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:48:56,625] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:49:06,790] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:49:06,791] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:49:06,791] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:49:06,791] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:49:16,957] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:49:16,958] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:49:16,958] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:49:16,958] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:49:27,125] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:49:27,125] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:49:27,125] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:49:27,126] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:49:37,293] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:49:37,293] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:49:37,293] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:49:37,293] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:49:47,463] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:49:47,463] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:49:47,463] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:49:47,463] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:49:57,659] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:49:57,659] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:49:57,659] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:49:57,659] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:50:07,849] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:50:07,850] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:50:07,850] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:50:07,850] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:50:18,016] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:50:18,016] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:50:18,016] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:50:18,016] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:50:28,184] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:50:28,185] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:50:28,185] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:50:28,185] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:50:38,351] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:50:38,351] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:50:38,352] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:50:38,352] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:50:48,519] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:50:48,519] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:50:48,519] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:50:48,519] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:50:58,686] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:50:58,686] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:50:58,686] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:50:58,686] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:51:08,852] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:51:08,852] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:51:08,852] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:51:08,852] DEBUG [telegram.bot.decorator:128] Entering: get_updates
