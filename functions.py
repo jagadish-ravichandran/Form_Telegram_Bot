@@ -35,21 +35,14 @@ def start_command(update : Update, context : CallbackContext):
             update.effective_message.reply_text("I m here for creating forms")
             return ConversationHandler.END
 
-        answers = []
+        context.user_data['form'] = current_form
+        context.user_data['answers'] = []
+        context.user_data['qns_to_answer'] = current_form[0][0]
         update.effective_message.reply_text(f"Form title : {current_form[0][2]}")
         update.effective_message.reply_text("Answer one by one for the following questions : ")
-        for i in current_form:
-            update.effective_message.reply_text(f"{i[3]}. {i[4]}")
-            
-            answers
-
-
-            
-
-
-
-
-
+        update.effective_message.reply_text(f"1. {current_form[0][4]}")
+        context.user_data["answer_count"] = 0
+        return 1
 
 def creating_form(update : Update, context : CallbackContext):
     update.effective_message.reply_text("Lets create forms !")
@@ -64,19 +57,30 @@ def title_of_form(update : Update, context : CallbackContext):
     return 2
 
 
-def answering(update : Update, context : CallbackContext):
 
-    answered = update.message.text
-    #context.user_data['question1_answer'] = answered
-    context.bot.send_message(
-        chat_id=update.message.chat_id, text= "Your answer is received")
-    context.user_data['question1'] = True
-    a = context.user_data['question1_id']
-    form_owner = a[:a.find('_')]
-    context.bot.send_message(
-        chat_id=int(form_owner), text=f"Answer received\n{answered}")
-    return ConversationHandler.END
-    
+def storing_answers(update : Update, context : CallbackContext):
+    db = db_connect()
+    db.execute
+    pass
+
+
+def answering(update : Update, context : CallbackContext):
+    current_form = context.user_data["form"]
+    qcount = context.user_data["qns_to_answer"]
+    answers = context.user_data["answers"]
+
+    if qcount == context.user_data["answer_count"]:
+        storing_answers(update, context)
+        update.effective_message.reply_text("You have answered all the questions!\nYour answeres are saved ! \nThank You! ")
+        update.effective_message.reply_text("I m here for creating forms")
+        update.effective_message.reply_text("Type /create to start creating")
+        return ConversationHandler.END
+
+    else:
+        answers.append(update.effective_message.text)
+        context.user_data["answer_count"] += 1
+        return 1
+
 
 def no_of_questions(update : Update, context : CallbackContext):
    
