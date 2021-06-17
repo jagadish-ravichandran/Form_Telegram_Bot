@@ -28,13 +28,15 @@ def start_command(update : Update, context : CallbackContext):
 
     else:
         ownerid, formid = list(map(int, context.args[0].split("_")))
-        current_form = extract_form(ownerid, formid)
+        print(ownerid)
+        print(formid)
+        current_form = extract_form(formid,ownerid)
 
         if current_form is None:
             update.effective_message.reply_text("The form is not available! \n Please check the form link !")
             update.effective_message.reply_text("I m here for creating forms")
             return ConversationHandler.END
-
+        print(current_form)
         context.user_data['form'] = current_form
         context.user_data['answers'] = []
         context.user_data['qns_to_answer'] = current_form[0][0]
@@ -60,8 +62,15 @@ def title_of_form(update : Update, context : CallbackContext):
 
 def storing_answers(update : Update, context : CallbackContext):
     db = db_connect()
-    db.execute
-    pass
+    cur = db.cursor()
+    user_id = update.effective_user.id
+    form_id = context.user_data["form"]
+    answers = context.user_data["answers"]
+    count = context.user_data["answer_count"]
+    for i in range(count):
+        cur = db.execute("insert into answer_table values(?,?,?)",user_id,form_id,answers[i])
+    db.commit()
+    db.close()
 
 
 def answering(update : Update, context : CallbackContext):
@@ -79,6 +88,8 @@ def answering(update : Update, context : CallbackContext):
     else:
         answers.append(update.effective_message.text)
         context.user_data["answer_count"] += 1
+        next_question = current_form[3][4]
+        update.effective_message.reply_text(f". {next_question}")
         return 1
 
 
