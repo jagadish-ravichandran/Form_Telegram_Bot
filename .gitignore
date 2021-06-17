@@ -1,4 +1,3 @@
 project_environment/
-.vscode
 __pycache__
 logs.log

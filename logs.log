@@ -174,3 +174,440 @@
 [2021-06-17 11:51:08,852] DEBUG [telegram.bot.decorator:130] []
 [2021-06-17 11:51:08,852] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
 [2021-06-17 11:51:08,852] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:51:19,021] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:51:19,022] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:51:19,022] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:51:19,022] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:51:29,196] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:51:29,196] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:51:29,196] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:51:29,196] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:51:39,365] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:51:39,365] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:51:39,365] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:51:39,366] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:51:49,557] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:51:49,557] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:51:49,557] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:51:49,557] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:51:59,727] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:51:59,727] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:51:59,727] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:51:59,727] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:52:09,912] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:52:09,912] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:52:09,912] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:52:09,912] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:52:20,107] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:52:20,107] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:52:20,107] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:52:20,107] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:52:30,275] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:52:30,275] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:52:30,276] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:52:30,276] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:52:40,453] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:52:40,453] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:52:40,454] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:52:40,454] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:52:50,621] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:52:50,621] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:52:50,621] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:52:50,621] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:53:00,789] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:53:00,789] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:53:00,789] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:53:00,789] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:53:10,960] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:53:10,960] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:53:10,960] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:53:10,961] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:53:21,136] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:53:21,136] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:53:21,136] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:53:21,136] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:53:31,305] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:53:31,305] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:53:31,305] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:53:31,305] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:53:41,481] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:53:41,482] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:53:41,482] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:53:41,482] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:53:51,649] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:53:51,649] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:53:51,649] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:53:51,649] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:54:01,834] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:54:01,835] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:54:01,835] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:54:01,835] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:54:12,002] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:54:12,002] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:54:12,002] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:54:12,002] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:54:22,179] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:54:22,179] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:54:22,179] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:54:22,180] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:54:32,345] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:54:32,346] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:54:32,346] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:54:32,346] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:54:42,520] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:54:42,520] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:54:42,521] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:54:42,521] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:54:52,688] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:54:52,688] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:54:52,688] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:54:52,688] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:55:02,856] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:55:02,857] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:55:02,857] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:55:02,857] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:55:13,024] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:55:13,024] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:55:13,024] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:55:13,024] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:55:23,190] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:55:23,191] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:55:23,191] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:55:23,191] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:55:33,390] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:55:33,390] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:55:33,390] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:55:33,391] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:55:43,560] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:55:43,560] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:55:43,561] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:55:43,561] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:55:53,755] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:55:53,755] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:55:53,756] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:55:53,756] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:56:03,933] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:56:03,933] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:56:03,933] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:56:03,933] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:56:14,116] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:56:14,116] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:56:14,116] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:56:14,116] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:56:24,310] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:56:24,311] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:56:24,311] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:56:24,311] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:56:34,541] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:56:34,541] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:56:34,541] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:56:34,541] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:56:44,707] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:56:44,707] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:56:44,707] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:56:44,707] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:56:54,874] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:56:54,874] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:56:54,874] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:56:54,874] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:57:05,046] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:57:05,046] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:57:05,046] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:57:05,046] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:57:15,247] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:57:15,247] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:57:15,248] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:57:15,248] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:57:25,446] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:57:25,446] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:57:25,447] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:57:25,447] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:57:35,615] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:57:35,615] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:57:35,615] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:57:35,615] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:57:45,781] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:57:45,781] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:57:45,782] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:57:45,782] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:57:55,947] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:57:55,947] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:57:55,947] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:57:55,947] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:58:06,113] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:58:06,114] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:58:06,114] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:58:06,114] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:58:16,289] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:58:16,289] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:58:16,289] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:58:16,289] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:58:26,454] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:58:26,454] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:58:26,454] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:58:26,455] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:58:36,621] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:58:36,621] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:58:36,621] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:58:36,622] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:58:46,788] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:58:46,789] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:58:46,789] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:58:46,789] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:58:56,956] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:58:56,956] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:58:56,956] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:58:56,957] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:59:07,123] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:59:07,123] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:59:07,123] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:59:07,124] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:59:17,304] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:59:17,304] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:59:17,304] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:59:17,304] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:59:27,470] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:59:27,471] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:59:27,471] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:59:27,471] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:59:37,641] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:59:37,641] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:59:37,641] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:59:37,641] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:59:47,807] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:59:47,807] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:59:47,808] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:59:47,808] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 11:59:57,973] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 11:59:57,973] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 11:59:57,973] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 11:59:57,973] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:00:08,165] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:00:08,165] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:00:08,165] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:00:08,165] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:00:18,331] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:00:18,332] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:00:18,332] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:00:18,332] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:00:28,518] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:00:28,519] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:00:28,519] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:00:28,519] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:00:38,689] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:00:38,689] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:00:38,690] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:00:38,690] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:00:48,870] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:00:48,870] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:00:48,870] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:00:48,870] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:00:59,037] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:00:59,037] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:00:59,037] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:00:59,037] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:01:09,241] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:01:09,242] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:01:09,242] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:01:09,242] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:01:19,416] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:01:19,416] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:01:19,416] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:01:19,416] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:01:29,582] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:01:29,583] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:01:29,583] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:01:29,583] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:01:39,751] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:01:39,751] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:01:39,751] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:01:39,751] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:01:49,942] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:01:49,942] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:01:49,942] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:01:49,942] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:02:00,140] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:02:00,140] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:02:00,140] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:02:00,140] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:02:10,342] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:02:10,342] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:02:10,343] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:02:10,343] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:02:20,529] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:02:20,529] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:02:20,529] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:02:20,529] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:02:30,723] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:02:30,723] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:02:30,723] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:02:30,723] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:02:40,922] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:02:40,922] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:02:40,922] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:02:40,923] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:02:51,120] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:02:51,120] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:02:51,120] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:02:51,120] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:03:01,323] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:03:01,323] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:03:01,323] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:03:01,323] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:03:11,492] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:03:11,492] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:03:11,492] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:03:11,492] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:03:21,669] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:03:21,670] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:03:21,670] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:03:21,670] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:03:31,836] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:03:31,836] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:03:31,836] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:03:31,836] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:03:42,002] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:03:42,002] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:03:42,003] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:03:42,003] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:03:52,180] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:03:52,181] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:03:52,181] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:03:52,181] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:04:02,347] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:04:02,347] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:04:02,348] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:04:02,348] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:04:12,526] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:04:12,526] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:04:12,526] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:04:12,526] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:04:22,692] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:04:22,693] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:04:22,693] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:04:22,693] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:04:32,872] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:04:32,873] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:04:32,873] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:04:32,873] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:04:43,055] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:04:43,056] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:04:43,056] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:04:43,056] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:04:53,228] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:04:53,229] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:04:53,229] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:04:53,229] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:05:03,406] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:05:03,406] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:05:03,406] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:05:03,406] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:05:13,573] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:05:13,574] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:05:13,574] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:05:13,574] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:05:23,740] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:05:23,740] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:05:23,740] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:05:23,740] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:05:33,907] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:05:33,907] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:05:33,907] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:05:33,908] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:05:44,090] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:05:44,090] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:05:44,090] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:05:44,090] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:05:54,259] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:05:54,259] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:05:54,259] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:05:54,259] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:06:04,425] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:06:04,425] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:06:04,426] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:06:04,426] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:06:14,605] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:06:14,605] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:06:14,606] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:06:14,606] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:06:24,777] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:06:24,777] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:06:24,777] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:06:24,778] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:06:34,953] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:06:34,954] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:06:34,954] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:06:34,954] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:06:45,124] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:06:45,124] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:06:45,124] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:06:45,124] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:06:55,293] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:06:55,293] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:06:55,293] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:06:55,293] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:07:05,460] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:07:05,460] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:07:05,460] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:07:05,460] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:07:15,627] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:07:15,627] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:07:15,627] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:07:15,628] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:07:25,796] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:07:25,796] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:07:25,796] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:07:25,796] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:07:35,965] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:07:35,965] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:07:35,965] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:07:35,965] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:07:46,132] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:07:46,133] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:07:46,133] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:07:46,133] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:07:56,300] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:07:56,300] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:07:56,300] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:07:56,301] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:08:06,466] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:08:06,466] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:08:06,466] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:08:06,466] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:08:16,634] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:08:16,634] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:08:16,634] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:08:16,634] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:08:26,800] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:08:26,800] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:08:26,800] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:08:26,801] DEBUG [telegram.bot.decorator:128] Entering: get_updates
+[2021-06-17 12:08:27,786] INFO [telegram.ext.updater._signal_handler:858] Received signal 2 (SIGINT), stopping...
+[2021-06-17 12:08:27,786] INFO [apscheduler.scheduler.shutdown:198] Scheduler has been shut down
+[2021-06-17 12:08:27,786] DEBUG [apscheduler.scheduler._process_jobs:940] Looking for jobs to run
+[2021-06-17 12:08:27,786] DEBUG [apscheduler.scheduler._process_jobs:1016] No jobs; waiting until a job is added
+[2021-06-17 12:08:27,786] DEBUG [telegram.ext.updater.stop:818] Stopping Updater and Dispatcher...
+[2021-06-17 12:08:27,786] DEBUG [telegram.ext.updater._stop_dispatcher:843] Requesting Dispatcher to stop...
+[2021-06-17 12:08:28,597] DEBUG [telegram.ext.dispatcher.start:477] orderly stopping
+[2021-06-17 12:08:28,598] DEBUG [telegram.ext.dispatcher.start:489] Dispatcher thread stopped
+[2021-06-17 12:08:28,598] DEBUG [telegram.ext.updater._thread_wrapper:358] Bot:1869792637:dispatcher - ended
+[2021-06-17 12:08:28,689] DEBUG [telegram.ext.dispatcher.stop:509] Waiting for async thread 1/4 to end
+[2021-06-17 12:08:28,689] DEBUG [telegram.ext.dispatcher._pooled:365] Closing run_async thread Bot:1869792637:worker:a799090c-653e-4a48-b783-7805cc500447_0/4
+[2021-06-17 12:08:28,689] DEBUG [telegram.ext.dispatcher._pooled:365] Closing run_async thread Bot:1869792637:worker:a799090c-653e-4a48-b783-7805cc500447_3/4
+[2021-06-17 12:08:28,690] DEBUG [telegram.ext.dispatcher._pooled:365] Closing run_async thread Bot:1869792637:worker:a799090c-653e-4a48-b783-7805cc500447_1/4
+[2021-06-17 12:08:28,690] DEBUG [telegram.ext.dispatcher._pooled:365] Closing run_async thread Bot:1869792637:worker:a799090c-653e-4a48-b783-7805cc500447_2/4
+[2021-06-17 12:08:28,691] DEBUG [telegram.ext.dispatcher.stop:512] async thread 1/4 has ended
+[2021-06-17 12:08:28,691] DEBUG [telegram.ext.dispatcher.stop:509] Waiting for async thread 2/4 to end
+[2021-06-17 12:08:28,691] DEBUG [telegram.ext.dispatcher.stop:512] async thread 2/4 has ended
+[2021-06-17 12:08:28,691] DEBUG [telegram.ext.dispatcher.stop:509] Waiting for async thread 3/4 to end
+[2021-06-17 12:08:28,691] DEBUG [telegram.ext.dispatcher.stop:512] async thread 3/4 has ended
+[2021-06-17 12:08:28,691] DEBUG [telegram.ext.dispatcher.stop:509] Waiting for async thread 4/4 to end
+[2021-06-17 12:08:28,691] DEBUG [telegram.ext.dispatcher.stop:512] async thread 4/4 has ended
+[2021-06-17 12:08:28,691] DEBUG [telegram.ext.updater._join_threads:849] Waiting for Bot:1869792637:dispatcher thread to end
+[2021-06-17 12:08:28,692] DEBUG [telegram.ext.updater._join_threads:851] Bot:1869792637:dispatcher thread has ended
+[2021-06-17 12:08:28,692] DEBUG [telegram.ext.updater._join_threads:849] Waiting for Bot:1869792637:updater thread to end
+[2021-06-17 12:08:36,972] DEBUG [telegram.bot.get_updates:2826] No new updates found.
+[2021-06-17 12:08:36,972] DEBUG [telegram.bot.decorator:130] []
+[2021-06-17 12:08:36,972] DEBUG [telegram.bot.decorator:131] Exiting: get_updates
+[2021-06-17 12:08:36,972] DEBUG [telegram.ext.updater._thread_wrapper:358] Bot:1869792637:updater - ended
+[2021-06-17 12:08:36,973] DEBUG [telegram.ext.updater._join_threads:851] Bot:1869792637:updater thread has ended

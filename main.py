@@ -50,7 +50,7 @@ def db_intialize(db : sqlite3.Connection):
         );''')
 
     cur = db.execute('''create table if not exists answer_table (
-        user_id int references form_table(user_id), 
+        user_id int references user_table(user_id), 
         form_id int references form_table(form_id),
         answers text not null
         );''')

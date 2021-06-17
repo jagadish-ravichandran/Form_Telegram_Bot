@@ -1,6 +1,6 @@
 from telegram.ext import ConversationHandler, CallbackContext
 import sqlite3
-from telegram import Update, ReplyKeyboardMarkup, ReplyMarkup, user
+from telegram import Update
 import logging
 
 def show_table(db : sqlite3.Connection, name : str):
@@ -27,28 +27,28 @@ def start_command(update : Update, context : CallbackContext):
         return ConversationHandler.END
 
     else:
-        '''
-        with open("sample.json", "r") as f:
-            data = json.load(f)
+        ownerid, formid = list(map(int, context.args[0].split("_")))
+        current_form = extract_form(ownerid, formid)
 
-        if update.message.chat_id in data[context.args[0]]['answered']:
-            context.bot.send_message(chat_id=update.message.chat_id, text="You have answered this form already !")
+        if current_form is None:
+            update.effective_message.reply_text("The form is not available! \n Please check the form link !")
+            update.effective_message.reply_text("I m here for creating forms")
             return ConversationHandler.END
 
-        else:
-            data[context.args[0]]['answered'].append(update.message.chat_id)
-        
-            with open("sample.json", "w") as f1:
-                json.dump(data,f1)
-
-            context.bot.send_message(
-                chat_id=update.message.chat_id, text=f"Title of the form : {data[context.args[0]]['title']}")
+        answers = []
+        update.effective_message.reply_text(f"Form title : {current_form[0][2]}")
+        update.effective_message.reply_text("Answer one by one for the following questions : ")
+        for i in current_form:
+            update.effective_message.reply_text(f"{i[3]}. {i[4]}")
             
-            context.bot.send_message(
-                    chat_id=update.message.chat_id, text= "Answers questions one by one !")
+            answers
 
-            return 3
-        '''
+
+            
+
+
+
+
 
 
 def creating_form(update : Update, context : CallbackContext):
@@ -143,28 +143,14 @@ def questions_started(update : Update, context : CallbackContext):
     db.commit()
     
     # displaying the last generated form
-    
-    ### while updating schema,take care of this ordering
-    #print(f"form count of {update.effective_user.full_name} : {user_form_count}")
-    last_form = display_form(total_forms, userid)
+    last_form = extract_form(total_forms, userid)
     context.user_data["last_form"] = user_form_count
     displaying_each_form(update, context, last_form)
-    
-    #print(f"last form of {update.effective_user.full_name} : ",last_form)
-    #update.effective_message.reply_text(f"Form title : {last_form[0][1]}")
-    #update.effective_message.reply_text("Questions : ")
-    #for i in last_form:
-    #    update.effective_message.reply_text(f"{i[2]} - {i[3]}")
-
-    #form_link = f"https://t.me/form_telebot?start={userid}_{total_forms}"
-
-    #update.effective_message.reply_text(f"Your link for this for : {form_link}\n You can send this link to others to get the answers from them")
-    
     db.close()
 
     return ConversationHandler.END
 
-def display_form(formid, userid) -> list:
+def extract_form(formid, userid) -> list:
     db = db_connect()
     cur = db.cursor()
     if formid is None:
@@ -208,11 +194,10 @@ def displaying_each_form(update : Update, context : CallbackContext, flist : lis
     
 def view_forms(update : Update, context : CallbackContext):
     userid = update.effective_user.id
-    flist = display_form(formid= None, userid= userid)
+    flist = extract_form(formid= None, userid= userid)
     displaying_each_form(update, context, flist)
             
-            
-    
+
 def cancel_command(update : Update, context : CallbackContext):
    update.effective_message.reply_text("Your current operation is cancelled")
 
