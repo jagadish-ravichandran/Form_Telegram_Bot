@@ -1,11 +1,7 @@
 from telegram.ext import ConversationHandler, CallbackContext
 import sqlite3
-from telegram import Update, ReplyKeyboardMarkup, ReplyMarkup
+from telegram import Update, ReplyKeyboardMarkup, ReplyMarkup, user
 import logging
-from logging import FileHandler
-import random
-
-form_id = 1
 
 def show_table(db : sqlite3.Connection, name : str):
     print(db.execute(f"select * from {name}").fetchall())
@@ -28,7 +24,7 @@ def start_command(update : Update, context : CallbackContext):
             db.close()
         update.effective_message.reply_text("I m here for creating forms")
         update.effective_message.reply_text("Type /create to start creating")
-        return 0
+        return ConversationHandler.END
 
     else:
         '''
@@ -149,16 +145,20 @@ def questions_started(update : Update, context : CallbackContext):
     # displaying the last generated form
     
     ### while updating schema,take care of this ordering
+    #print(f"form count of {update.effective_user.full_name} : {user_form_count}")
+    last_form = display_form(total_forms, userid)
+    context.user_data["last_form"] = user_form_count
+    displaying_each_form(update, context, last_form)
+    
+    #print(f"last form of {update.effective_user.full_name} : ",last_form)
+    #update.effective_message.reply_text(f"Form title : {last_form[0][1]}")
+    #update.effective_message.reply_text("Questions : ")
+    #for i in last_form:
+    #    update.effective_message.reply_text(f"{i[2]} - {i[3]}")
 
-    last_form = display_form(user_form_count, userid)
-    update.effective_message.reply_text(f"Form title : {last_form[0][1]}")
-    update.effective_message.reply_text("Questions : ")
-    for i in last_form:
-        update.effective_message.reply_text(f"{i[2]} - {i[3]}")
+    #form_link = f"https://t.me/form_telebot?start={userid}_{total_forms}"
 
-    form_link = f"https://t.me/form_telebot?start={userid}_{total_forms}"
-
-    update.effective_message.reply_text(f"Your link for this for : {form_link}\n You can send this link to others to get the answers from them")
+    #update.effective_message.reply_text(f"Your link for this for : {form_link}\n You can send this link to others to get the answers from them")
     
     db.close()
 
@@ -168,17 +168,51 @@ def display_form(formid, userid) -> list:
     db = db_connect()
     cur = db.cursor()
     if formid is None:
-        cur = db.execute(f"select qt.* from question_table qt,form_table ft where ft.user_id = {userid} and qt.form_id = ft.form_id")
+        cur = db.execute(f"select ft.question_count, qt.* from question_table qt,form_table ft where ft.user_id = {userid} and qt.form_id = ft.form_id")
     
     else:
-        cur = db.execute(f"select qt.* from question_table qt, form_table ft where ft.user_id={userid} and ft.form_id = {formid} and qt.form_id = {formid}")
+        cur = db.execute(f"select ft.question_count, qt.* from question_table qt, form_table ft where ft.user_id={userid} and ft.form_id = {formid} and qt.form_id = {formid}")
     #cur = db.execute("select * from question table where form_")
     result = cur.fetchall()
     db.close()
     return result
+
+def displaying_each_form(update : Update, context : CallbackContext, flist : list) -> str:
+    tracker = 1 
+    if (context.user_data.get("last_form",None)):
+        tracker = context.user_data["last_form"]
+    title = ""
+    id = 0
+    questions = []
+    for i in flist:
+        if title == "":
+            title += i[2]
+            id = i[1]
+        
+        if i[2] == title:
+            questions.append(i[4])
+
+        if len(questions) == i[0]:
+            #form_dict[title] = questions
+            complete_form_text = f"Form {tracker} : \n\n"
+            complete_form_text += f"Title : {title}\n"
+            
+            for j in questions:
+                complete_form_text += f"{questions.index(j)+1}. {j}\n"
+            form_link = f"https://t.me/{context.bot.username}?start={update.effective_user.id}_{id}"
+            complete_form_text +=  form_link
+            update.effective_message.reply_text(complete_form_text)
+            title = ""
+            questions = []
+            tracker +=1
     
-
-
+def view_forms(update : Update, context : CallbackContext):
+    userid = update.effective_user.id
+    flist = display_form(formid= None, userid= userid)
+    displaying_each_form(update, context, flist)
+            
+            
+    
 def cancel_command(update : Update, context : CallbackContext):
    update.effective_message.reply_text("Your current operation is cancelled")
 
