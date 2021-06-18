@@ -1,8 +1,9 @@
+from telegram.botcommand import BotCommand
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, Filters
 
-from functions import db_connect, start_command, creating_form, cancel_command, no_of_questions, questions_started, answering, title_of_form, view_forms
+from functions import db_connect, show_answers, start_command, creating_form, cancel_command, no_of_questions, questions_started, answering, title_of_form, view_forms
 
-from telegram import Bot
+from telegram import Bot, Update
 
 import sqlite3
 
@@ -50,7 +51,8 @@ def db_intialize(db : sqlite3.Connection):
         );''')
 
     cur = db.execute('''create table if not exists answer_table (
-        user_id int references user_table(user_id), 
+        user_id int references user_table(user_id),
+        name text,
         form_id int references form_table(form_id),
         answers text not null
         );''')
@@ -84,7 +86,16 @@ def main():
         },
         fallbacks= [MessageHandler(Filters.regex("Cancel"),cancel_command)]
     ))
-    
+
+    d.add_handler(CommandHandler("answers",show_answers))
+    updater.bot.set_my_commands(
+        [
+        BotCommand("start","Start Me"),
+        BotCommand("create","Form Creation"),
+        BotCommand("view_forms", "Your Forms"),
+        BotCommand("answers", "Answers for your Forms"),
+        ]
+    )
     updater.start_polling()
 
     updater.idle()
