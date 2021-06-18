@@ -6,8 +6,8 @@ db = sqlite3.connect("form_bot_db")
 #con.close()
 #exit()
 cur = db.cursor()
-formid = 3
-userid= 711465019
+#formid = 3
+userid= 576048895
 
 #cur = db.execute("select * from question_table")
 #cur = db.execute(f"select ft.question_count, qt.* from question_table qt, form_table ft where ft.user_id={user_id} and qt.form_id = ft.form_id")
@@ -15,11 +15,11 @@ userid= 711465019
 #cur.execute("select * from dummy")
 #cur.execute('select * from sqlite_master')
 #cur = db.execute(f"select ft.question_count, qt.* from question_table qt,form_table ft where ft.user_id = {userid} and qt.form_id = ft.form_id")
-cur = db.execute(f"select qt.* from question_table qt, form_table ft where ft.user_id={userid} and ft.form_id = {formid} and qt.form_id = {formid}")
+cur = db.execute(f"select distinct form_id from answer_table where user_id={userid}")
 
-flist = cur.fetchall()
+flist = cur.fetchall()[0][0]
 print(flist)
-
+db.close()
 exit()
 
 form_dict = {}
