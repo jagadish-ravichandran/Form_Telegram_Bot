@@ -71,9 +71,9 @@ def main():
     d.add_handler(ConversationHandler(
         entry_points=[CommandHandler("start", start_command)],
         states={
-            1 : [MessageHandler(Filters.text & ~Filters.regex("Cancel"), answering)]
+            1 : [MessageHandler(Filters.text, answering)]
         },
-        fallbacks= [MessageHandler(Filters.regex("Cancel"),cancel_command),MessageHandler(Filters.all,invalid_typing_in_answers)]
+        fallbacks= [MessageHandler(MessageHandler(Filters.all,invalid_typing_in_answers)]
     ))
 
     d.add_handler(CommandHandler("view_forms", view_forms))
