@@ -1,4 +1,4 @@
-import os
+import csv
 
 '''
 s ={'form count' : 1,
@@ -32,18 +32,9 @@ else:
         print("failed")
 '''
 
-import json
-'''
-with open("sample.json", "r") as f:
-    data = json.load(f)
+with open("form_table.csv",mode= "w") as f:
 
-for i in range(data['576048895_1']['questions count']):
-        print(data['576048895_1'][str(i)])
-'''
+        csv_writer = csv.writer(f, delimiter = ",")
 
-with open("sample.json", "r") as f:
-    data = json.load(f)
-    data["1"]["2"].append(23)
-    with open("sample.json", "w") as f1:
-        json.dump(data, f1)
+        csv_writer.writerow([])
 
