@@ -1,7 +1,9 @@
+from sqlite3.dbapi2 import Cursor
 from telegram.ext import ConversationHandler, CallbackContext
 import sqlite3
 from telegram import Update, user
 import logging
+import csv
 
 def show_table(db : sqlite3.Connection, name : str):
     print(db.execute(f"select * from {name}").fetchall())
@@ -223,8 +225,64 @@ def view_forms(update : Update, context : CallbackContext):
 
 def show_answers(update : Update, context : CallbackContext):
     userid = update.effective_user.id
-    flist = extract_form(formid= None, userid= userid)
-    displaying_each_form(update, context, flist)
+    #flist = extract_form(formid= None, userid= userid)
+    #displaying_each_form(update, context, flist)
+    creating_csv_for_answers_for_all_forms(update, context, userid)
+
+
+def creating_csv_for_each_form(form_records, userid):
+    db = db_connect()
+    cur = db.cursor()
+    qcount = form_records[0]
+    formid = form_records[1]
+    ans_dict = {}
+    cur = db.execute(f"select name,answers from answer_table where form_id={formid}")
+    ans_list = cur.fetchall()
+ 
+    if ans_list == []:
+        return None
+    tracker = 0
+    for j in ans_list:
+        if tracker == qcount:
+            tracker = 0 
+        if tracker == 0:
+            ans_dict[j[0]] = []
+        ans_dict[j[0]].append(j[1])
+        tracker+=1
+    
+    filename = f"csv_files/answers_{userid}:{formid}.csv"
+    
+    cur = db.execute(f"select question_id, question_desc from question_table,user_table ft where form_id = {formid} and ft.user_id = {userid}")
+    qn = cur.fetchall()
+
+    with open(file=filename,mode="w") as f:
+
+        csv_writer = csv.writer(f, delimiter=",")
+        
+        qlist = ["User"]
+        for i in qn:
+            qlist.append(f"{i[0]}. {i[1]}")
+        csv_writer.writerow (qlist)
+        
+        for k,v in ans_dict.items():    
+            v.insert(0,k)
+            csv_writer.writerow(v)
+
+    return filename
+
+def creating_csv_for_answers_for_all_forms(update : Update, context : CallbackContext, userid):
+    db = db_connect()
+    cur = db.cursor()
+
+    ## extracting the form id for a given user id
+    cur = db.execute(f"select ft.question_count, ft.form_id, ft.form_title from user_table ut, form_table ft where ut.user_id = {userid} and ft.user_id={userid}")
+    anslist = cur.fetchall()
+    #db.close()
+    for i in anslist:
+        csv_file = creating_csv_for_each_form(i, userid)
+        if csv_file is None:
+            continue
+        update.effective_message.reply_document(document = open(file=csv_file,mode="r"), filename = f"Answers for {i[2]}")
 
 
 def cancel_command(update : Update, context : CallbackContext):
