@@ -22,13 +22,15 @@ def start_command(update : Update, context : CallbackContext):
     cur = db.cursor()
     userid = int(update.effective_user.id)
     
+   
+    cur = db.execute(f'select * from user_table where user_id={userid}')
+    if len(cur.fetchall()) == 0:
+        cur = db.execute(f'insert into user_table values({userid},0)')
+        db.commit()
+        db.close()
+
     if not context.args:
-        cur = db.execute(f'select * from user_table where user_id={userid}')
-        if len(cur.fetchall()) == 0:
-            cur = db.execute(f'insert into user_table values({userid},0)')
-            db.commit()
-            db.close()
-            return beginning(update, context)
+        return beginning(update, context)
 
     else:
         ownerid, formid = list(map(int, context.args[0].split("_")))
@@ -62,7 +64,7 @@ def creating_form(update : Update, context : CallbackContext):
 def title_of_form(update : Update, context : CallbackContext):
     title = update.message.text
     context.user_data['title'] = title
-    update.effective_message.reply_text("Enter no. of questions do you want to add")
+    update.effective_message.reply_text("Enter no. of questions do you want to add (limit 10)")
     return 2
 
 
@@ -108,6 +110,9 @@ def answering(update : Update, context : CallbackContext):
 
 def no_of_questions(update : Update, context : CallbackContext):
     question_count = int(update.message.text)
+    if question_count >= 10:
+        update.effective_message.reply_text("You crossed your question limit!\nEnter number less than 10: ")
+        return 2
     context.user_data['question_count'] = question_count
     context.user_data['current_question'] = 1
     context.user_data['questions'] = []
