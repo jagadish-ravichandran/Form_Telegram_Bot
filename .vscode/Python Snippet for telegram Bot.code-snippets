@@ -18,6 +18,11 @@
 	"send message to user" : {
 		"prefix": "send text to user",
 		"body": "update.effective_message.reply_text()"
+	},
+
+	"parameter" : {
+		"prefix": "parameter for bot functions",
+		"body": "update : Update,context : CallbackContext"
 	}
 	
 }
