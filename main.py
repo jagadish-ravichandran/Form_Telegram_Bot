@@ -1,7 +1,8 @@
 from telegram.botcommand import BotCommand
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, Filters
+from telegram.files.file import File
 
-from functions import db_connect, show_answers, start_command, creating_form, cancel_command, no_of_questions, questions_started, answering, title_of_form, view_forms
+from functions import db_connect, invalid_qn_number, invalid_title, invalid_typing_in_answers, invalid_typing_in_questions, show_answers, start_command, creating_form, cancel_command, no_of_questions, questions_started, answering, title_of_form, view_forms
 
 from telegram import Bot, Update
 
@@ -12,7 +13,7 @@ import logging
 logging.basicConfig(filename="logs.log",
     filemode="w", 
     format= '[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
-    level=logging.DEBUG)
+    level=logging.INFO)
 
 logger = logging.getLogger(__name__)
 
@@ -70,19 +71,18 @@ def main():
     d.add_handler(ConversationHandler(
         entry_points=[CommandHandler("start", start_command)],
         states={
-            1 : [MessageHandler(Filters.text, answering)]
+            1 : [MessageHandler(Filters.text & ~Filters.regex("Cancel"), answering)]
         },
-        fallbacks= [MessageHandler(Filters.regex("Cancel"),cancel_command)]
+        fallbacks= [MessageHandler(Filters.regex("Cancel"),cancel_command),MessageHandler(Filters.all,invalid_typing_in_answers)]
     ))
 
     d.add_handler(CommandHandler("view_forms", view_forms))
     d.add_handler(ConversationHandler(
         entry_points=[(CommandHandler("create", creating_form))],
         states={
-            1 : [MessageHandler(Filters.text, title_of_form)],
-            2: [MessageHandler(Filters.regex('[0-9]'), no_of_questions)],
-            3 : [MessageHandler(Filters.text, questions_started)],
-            4 : [MessageHandler(Filters.text, answering)]
+            1 : [MessageHandler(Filters.text & ~Filters.regex("Cancel"), title_of_form),MessageHandler(Filters.all & ~Filters.regex("Cancel"),invalid_title)],
+            2: [MessageHandler(Filters.regex('[0-9]'), no_of_questions), MessageHandler(Filters.all &~Filters.regex("Cancel"),invalid_qn_number)],
+            3 : [MessageHandler(Filters.text & ~Filters.regex("Cancel"), questions_started),MessageHandler(Filters.all & ~Filters.regex("Cancel"),invalid_typing_in_questions)]
         },
         fallbacks= [MessageHandler(Filters.regex("Cancel"),cancel_command)]
     ))
