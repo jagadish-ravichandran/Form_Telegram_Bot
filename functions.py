@@ -4,6 +4,12 @@ import sqlite3
 from telegram import Update, user
 import logging
 import csv
+import os
+
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
+
+cancel_button = [["Cancel"]]
+cancel_markup = ReplyKeyboardMarkup(cancel_button, one_time_keyboard= False)
 
 def show_table(db : sqlite3.Connection, name : str):
     print(db.execute(f"select * from {name}").fetchall())
@@ -11,6 +17,22 @@ def show_table(db : sqlite3.Connection, name : str):
 def db_connect():
     db_con = sqlite3.connect('form_bot_db')
     return db_con
+
+def invalid_qn_number(update : Update,context : CallbackContext):
+    update.effective_message.reply_text("Invalid entry !\nEnter number (1-10) : ")
+    return 2
+
+def invalid_typing_in_answers(update : Update,context: CallbackContext):
+    update.effective_message.reply_text("Invalid answer! Please enter valid text")
+    return 1
+
+def invalid_typing_in_questions(update : Update,context: CallbackContext):
+    update.effective_message.reply_text("Invalid question! Please enter valid text")
+    return 3
+
+def invalid_title(update : Update,context : CallbackContext):
+    update.effective_message.reply_text("Invalid title! Please enter valid text")
+    return 1
 
 def beginning(update: Update, context : CallbackContext):
     update.effective_message.reply_text("I m here for creating forms")
@@ -57,7 +79,7 @@ def start_command(update : Update, context : CallbackContext):
 
 def creating_form(update : Update, context : CallbackContext):
     update.effective_message.reply_text("Lets create forms !")
-    update.effective_message.reply_text("Enter the title for your form : ")
+    update.effective_message.reply_text("Enter the title for your form : ", reply_markup=cancel_markup)
     return 1
 
 
@@ -110,8 +132,9 @@ def answering(update : Update, context : CallbackContext):
 
 def no_of_questions(update : Update, context : CallbackContext):
     question_count = int(update.message.text)
-    if question_count >= 10:
-        update.effective_message.reply_text("You crossed your question limit!\nEnter number less than 10: ")
+    
+    if not 0 < question_count <= 10:
+        update.effective_message.reply_text("Invalid entry !\nEnter number (0-10) : ")
         return 2
     context.user_data['question_count'] = question_count
     context.user_data['current_question'] = 1
@@ -212,7 +235,7 @@ def displaying_each_form(update : Update, context : CallbackContext, flist : lis
             #form_dict[title] = questions
             complete_form_text = f"Form {tracker} : \n\n"
             complete_form_text += f"Title : {title}\n"
-            
+            complete_form_text += f"Questions : \n"
             for j in questions:
                 complete_form_text += f"{questions.index(j)+1}. {j}\n"
             form_link = f"https://t.me/{context.bot.username}?start={update.effective_user.id}_{id}"
@@ -287,9 +310,16 @@ def creating_csv_for_answers_for_all_forms(update : Update, context : CallbackCo
         csv_file = creating_csv_for_each_form(i, userid)
         if csv_file is None:
             continue
-        update.effective_message.reply_document(document = open(file=csv_file,mode="r"), filename = f"Answers for {i[2]}")
+        caption_text = f"Total questions : {i[0]}\n"
+        cur = db.execute(f"select count(distinct user_id) from answer_table where form_id={i[1]}")
+        user_count = cur.fetchone()[0]
+        caption_text += f"Total users answered : {user_count}"
+        update.effective_message.reply_document(document = open(file=csv_file,mode="r"), filename = f"{i[2]}-Answers", caption=caption_text)
+
+        os.remove(csv_file)
 
 
 def cancel_command(update : Update, context : CallbackContext):
    update.effective_message.reply_text("Your current operation is cancelled")
+   return beginning(update, context)
 
