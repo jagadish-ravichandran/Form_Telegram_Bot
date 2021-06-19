@@ -63,7 +63,7 @@ def db_intialize(db : sqlite3.Connection):
 def main():
     db_intialize(db_connect())
     api_token = "1869792637:AAETw6wyWCNr68OMuUxgkhwMpp-m0dQMoSI"
-    updater = Updater(api_token, use_context=True)
+    updater = Updater(api_token)
     
     d = updater.dispatcher
 
