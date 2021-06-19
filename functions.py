@@ -105,7 +105,8 @@ def storing_answers(update : Update, context : CallbackContext):
 
 
 def answering(update : Update, context : CallbackContext):
-    
+    if update.effective_message.text == "Cancel":
+        return cancel_command(update, context)
     current_form = context.user_data["form"]
     qcount = context.user_data["qns_to_answer"]
     answers = context.user_data["answers"]
