@@ -73,7 +73,7 @@ def main():
         states={
             1 : [MessageHandler(Filters.text, answering)]
         },
-        fallbacks= [MessageHandler(MessageHandler(Filters.all,invalid_typing_in_answers)]
+        fallbacks=[MessageHandler(Filters.all,invalid_typing_in_answers)]
     ))
 
     d.add_handler(CommandHandler("view_forms", view_forms))
