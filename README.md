@@ -9,4 +9,3 @@ TODO :
 3. While showing answers, the forms having questions less than 5 must be shown in telegram message itself. Other forms answers should be sent as csv file 
 Note: Inform the user about this
 
-4. Resize the reply keyboard button and remove them in appropriate situations
