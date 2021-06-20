@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "project_environment/bin/python",
+    "python.pythonPath": "project_environment/bin/python3",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true
 }
