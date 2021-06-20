@@ -1,6 +1,8 @@
 import sqlite3
 import csv
 
+from tabulate import tabulate
+
 
 def show_output(cur):
     print(cur.fetchall())
@@ -31,6 +33,7 @@ for i in flist:
     ans_list = cur.fetchall()
     if ans_list == []:
         continue
+    #print(ans_list)
     tracker = 0
     for j in ans_list:
         if tracker == qcount:
@@ -42,7 +45,7 @@ for i in flist:
     
     cur = db.execute(f"select question_id, question_desc from question_table,user_table ft where form_id = {formid} and ft.user_id = {userid}")
     qn = cur.fetchall()
-
+    
     f = open(f"csv_files/answers_{userid}:{formid}.csv",mode="w")
 
     csv_writer = csv.writer(f, delimiter=",")
@@ -50,14 +53,24 @@ for i in flist:
     qlist = ["User"]
     for i in qn:
         qlist.append(f"{i[0]}. {i[1]}")
+    
+
+    total_tab = []
+    total_tab.append(qlist)
+    
     csv_writer.writerow (qlist)
     
     for k,v in ans_dict.items():    
         v.insert(0,k)
         csv_writer.writerow(v)
+        total_tab.append(v)
 
+    tb = tabulate(total_tab, tablefmt="grid")
+    print(type(tb))
     f.close()
-#print(flist)
+
+
+
 db.close()
 exit()
 '''
