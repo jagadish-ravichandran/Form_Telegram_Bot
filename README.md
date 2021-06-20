@@ -6,6 +6,3 @@ TODO :
 
 2. Deleting forms feature should be added
 
-3. While showing answers, the forms having questions less than 5 must be shown in telegram message itself. Other forms answers should be sent as csv file 
-Note: Inform the user about this
-
