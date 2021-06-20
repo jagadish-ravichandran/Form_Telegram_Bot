@@ -5,11 +5,14 @@ from telegram import Update, user
 import logging
 import csv
 import os
+from tabulate import tabulate
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
 cancel_button = [["Cancel"]]
-cancel_markup = ReplyKeyboardMarkup(cancel_button, one_time_keyboard=False, resize_keyboard=True)
+cancel_markup = ReplyKeyboardMarkup(
+    cancel_button, one_time_keyboard=False, resize_keyboard=True
+)
 
 
 def show_table(db: sqlite3.Connection, name: str):
@@ -21,19 +24,21 @@ def db_connect():
     return db_con
 
 
-
 def invalid_typing_in_answers(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid answer! Please enter valid text")
-    
+
     return 0
+
 
 def invalid_title(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid title! Please enter valid text")
     return 1
 
+
 def invalid_qn_number(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid entry !\nEnter number (1-10) : ")
     return 2
+
 
 def invalid_typing_in_questions(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid question! Please enter valid text")
@@ -41,7 +46,7 @@ def invalid_typing_in_questions(update: Update, context: CallbackContext):
 
 
 def typing_commands_in_CH(update: Update, context: CallbackContext):
-    command = update.effective_message.text[:update.message.entities[0].length]
+    command = update.effective_message.text[: update.message.entities[0].length]
     update.effective_message.reply_text(
         f"Your current process is cancelled !\nPlease enter the command again {command}",
         reply_markup=ReplyKeyboardRemove(),
@@ -90,9 +95,13 @@ def start_command(update: Update, context: CallbackContext):
         context.user_data["form"] = current_form
         context.user_data["answers"] = []
         context.user_data["qns_to_answer"] = current_form[0][0]
-        update.effective_message.reply_text(f"Form title : {current_form[0][2]}\nTotal questions : {current_form[0][0]}\n\nAnswer one by one for the following questions : ")
+        update.effective_message.reply_text(
+            f"Form title : {current_form[0][2]}\nTotal questions : {current_form[0][0]}\n\nAnswer one by one for the following questions : "
+        )
         context.user_data["answer_count"] = 0
-        update.effective_message.reply_text(f"1. {current_form[0][4]}",reply_markup=cancel_markup)
+        update.effective_message.reply_text(
+            f"1. {current_form[0][4]}", reply_markup=cancel_markup
+        )
         return 0
 
 
@@ -115,7 +124,6 @@ def title_of_form(update: Update, context: CallbackContext):
 
 def storing_answers(update: Update, context: CallbackContext):
     db = db_connect()
-    cur = db.cursor()
     user_id = update.effective_user.id
     name = update.effective_user.full_name
     form_id = context.user_data["form"][0][1]
@@ -144,7 +152,7 @@ def answering(update: Update, context: CallbackContext):
         ans_text = "Your answers are : \n"
         for i in answers:
             ans_text = ans_text + f"{(answers.index(i)+1)}. {i}\n"
-        update.effective_message.reply_text(ans_text)
+        update.effective_message.reply_html(ans_text)
         storing_answers(update, context)
         update.effective_message.reply_text("Your answeres are saved ! \nThank You! ")
         return beginning(update, context)
@@ -293,6 +301,7 @@ def view_forms(update: Update, context: CallbackContext):
 
 def show_answers(update: Update, context: CallbackContext):
     userid = update.effective_user.id
+    update.effective_message.reply_text("Preview and its csv file will be uploaded !")
     creating_csv_for_answers_for_all_forms(update, context, userid)
 
 
@@ -306,7 +315,7 @@ def creating_csv_for_each_form(form_records, userid):
     ans_list = cur.fetchall()
 
     if ans_list == []:
-        return None
+        return (None, None)
     tracker = 0
     for j in ans_list:
         if tracker == qcount:
@@ -326,17 +335,20 @@ def creating_csv_for_each_form(form_records, userid):
     with open(file=filename, mode="w") as f:
 
         csv_writer = csv.writer(f, delimiter=",")
-
+        total_tab = []
         qlist = ["User"]
         for i in qn:
             qlist.append(f"{i[0]}. {i[1]}")
         csv_writer.writerow(qlist)
-
+        
+        total_tab.append(qlist[0:3])
         for k, v in ans_dict.items():
             v.insert(0, k)
+            if len(total_tab) <= 4:
+                total_tab.append(v)
             csv_writer.writerow(v)
 
-    return filename
+    return (filename, total_tab)
 
 
 def creating_csv_for_answers_for_all_forms(
@@ -352,7 +364,7 @@ def creating_csv_for_answers_for_all_forms(
     anslist = cur.fetchall()
     # db.close()
     for i in anslist:
-        csv_file = creating_csv_for_each_form(i, userid)
+        csv_file, total_tab = creating_csv_for_each_form(i, userid)
         if csv_file is None:
             continue
         caption_text = f"Total questions : {i[0]}\n"
@@ -361,12 +373,17 @@ def creating_csv_for_answers_for_all_forms(
         )
         user_count = cur.fetchone()[0]
         caption_text += f"Total users answered : {user_count}"
+         
+        tb = tabulate(total_tab, headers="firstrow",tablefmt="simple")
+        update.effective_message.reply_html(f"<pre>Title : {i[2]}\n{tb}!</pre>")
+
         update.effective_message.reply_document(
             document=open(file=csv_file, mode="r"),
             filename=f"{i[2]}-Answers",
             caption=caption_text,
         )
 
+        
         os.remove(csv_file)
 
 
@@ -397,5 +414,8 @@ Available commands :\n
         reply_markup=ReplyKeyboardRemove(),
     )
 
-def unknown_messages(update : Update,context : CallbackContext):
-    update.effective_message.reply_text("Use commands only !\nPlease type /help to know my commands")
+
+def unknown_messages(update: Update, context: CallbackContext):
+    update.effective_message.reply_text(
+        "Use commands only !\nPlease type /help to know my commands"
+    )
