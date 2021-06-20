@@ -9,7 +9,7 @@ import os
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
 cancel_button = [["Cancel"]]
-cancel_markup = ReplyKeyboardMarkup(cancel_button, one_time_keyboard=False)
+cancel_markup = ReplyKeyboardMarkup(cancel_button, one_time_keyboard=False, resize_keyboard=True)
 
 
 def show_table(db: sqlite3.Connection, name: str):
@@ -21,28 +21,38 @@ def db_connect():
     return db_con
 
 
-def invalid_qn_number(update: Update, context: CallbackContext):
-    update.effective_message.reply_text("Invalid entry !\nEnter number (1-10) : ")
-    return 2
-
 
 def invalid_typing_in_answers(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid answer! Please enter valid text")
+    
+    return 0
+
+def invalid_title(update: Update, context: CallbackContext):
+    update.effective_message.reply_text("Invalid title! Please enter valid text")
     return 1
 
+def invalid_qn_number(update: Update, context: CallbackContext):
+    update.effective_message.reply_text("Invalid entry !\nEnter number (1-10) : ")
+    return 2
 
 def invalid_typing_in_questions(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid question! Please enter valid text")
     return 3
 
 
-def invalid_title(update: Update, context: CallbackContext):
-    update.effective_message.reply_text("Invalid title! Please enter valid text")
-    return 1
+def typing_commands_in_CH(update: Update, context: CallbackContext):
+    command = update.effective_message.text[:update.message.entities[0].length]
+    update.effective_message.reply_text(
+        f"Your current process is cancelled !\nPlease enter the command again {command}",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    return ConversationHandler.END
 
 
 def beginning(update: Update, context: CallbackContext):
-    update.effective_message.reply_text("I m here for creating forms")
+    update.effective_message.reply_text(
+        "I m here for creating forms", reply_markup=ReplyKeyboardRemove()
+    )
     update.effective_message.reply_text("Type /create to start creating")
     return ConversationHandler.END
 
@@ -80,13 +90,10 @@ def start_command(update: Update, context: CallbackContext):
         context.user_data["form"] = current_form
         context.user_data["answers"] = []
         context.user_data["qns_to_answer"] = current_form[0][0]
-        update.effective_message.reply_text(f"Form title : {current_form[0][2]}")
-        update.effective_message.reply_text(
-            "Answer one by one for the following questions : "
-        )
+        update.effective_message.reply_text(f"Form title : {current_form[0][2]}\nTotal questions : {current_form[0][0]}\n\nAnswer one by one for the following questions : ")
         context.user_data["answer_count"] = 0
-        update.effective_message.reply_text(f"1. {current_form[0][4]}")
-        return 1
+        update.effective_message.reply_text(f"1. {current_form[0][4]}",reply_markup=cancel_markup)
+        return 0
 
 
 def creating_form(update: Update, context: CallbackContext):
@@ -148,14 +155,14 @@ def answering(update: Update, context: CallbackContext):
         ans_count = context.user_data["answer_count"]
         next_question = current_form[ans_count][4]
         update.effective_message.reply_text(f"{ans_count+1}. {next_question}")
-        return 1
+        return 0
 
 
 def no_of_questions(update: Update, context: CallbackContext):
     question_count = int(update.message.text)
 
     if not 0 < question_count <= 10:
-        update.effective_message.reply_text("Invalid entry !\nEnter number (0-10) : ")
+        update.effective_message.reply_text("Invalid entry !\nEnter number (1-10) : ")
         return 2
     context.user_data["question_count"] = question_count
     context.user_data["current_question"] = 1
@@ -366,3 +373,29 @@ def creating_csv_for_answers_for_all_forms(
 def cancel_command(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Your current operation is cancelled")
     return beginning(update, context)
+
+
+def unknown_commands(update: Update, context: CallbackContext):
+    update.effective_message.reply_text(
+        "Sorry, I didn't understand that command.", reply_markup=ReplyKeyboardRemove()
+    )
+    update.effective_message.reply_text(
+        "Type /help to find my commands and their functions"
+    )
+
+
+def help_command(update: Update, context: CallbackContext):
+    update.effective_message.reply_text(
+        """My name is form bot\n
+Available commands :\n
+/start - To start the bot\n
+/create - Helps to create your own form\n
+/view_forms - Helps to show your created forms\n
+/answers - Used for retrieving answers for your created forms\n
+/help - To show this help message
+    """,
+        reply_markup=ReplyKeyboardRemove(),
+    )
+
+def unknown_messages(update : Update,context : CallbackContext):
+    update.effective_message.reply_text("Use commands only !\nPlease type /help to know my commands")
