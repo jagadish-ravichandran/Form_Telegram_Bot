@@ -112,9 +112,24 @@ def creating_form(update: Update, context: CallbackContext):
     )
     return 1
 
+def title_repition_check_db(user_id, title):
+    db = db_connect()
+    cur = db.cursor()
+    cur = db.execute(f"select form_title from form_table where user_id={user_id}")
+    tl_list = cur.fetchall()
+    for i in tl_list:
+        if title == i[0]:
+            return True
+    return False
 
 def title_of_form(update: Update, context: CallbackContext):
     title = update.message.text
+    userid = int(update.effective_user.id)
+    tl_ck = title_repition_check_db(userid, title)
+
+    if tl_ck:
+        update.effective_message.reply_text("The form title is already entered!\nPlease enter other title: ")
+        return 2
     context.user_data["title"] = title
     update.effective_message.reply_text(
         "Enter no. of questions do you want to add (limit 10)"
@@ -340,7 +355,7 @@ def creating_csv_for_each_form(form_records, userid):
         for i in qn:
             qlist.append(f"{i[0]}. {i[1]}")
         csv_writer.writerow(qlist)
-        
+
         total_tab.append(qlist[0:3])
         for k, v in ans_dict.items():
             v.insert(0, k)
@@ -373,8 +388,8 @@ def creating_csv_for_answers_for_all_forms(
         )
         user_count = cur.fetchone()[0]
         caption_text += f"Total users answered : {user_count}"
-         
-        tb = tabulate(total_tab, headers="firstrow",tablefmt="simple")
+
+        tb = tabulate(total_tab, headers="firstrow", tablefmt="simple")
         update.effective_message.reply_html(f"<pre>Title : {i[2]}\n{tb}!</pre>")
 
         update.effective_message.reply_document(
@@ -383,7 +398,6 @@ def creating_csv_for_answers_for_all_forms(
             caption=caption_text,
         )
 
-        
         os.remove(csv_file)
 
 
