@@ -29,15 +29,15 @@ from bot_functions import (
     view_forms,
 )
 
-from db_functions import (
-    db_connect,
-)
+from db_functions import db_connect
 
 from telegram import Bot, Update
 
 import sqlite3
 
 import logging
+
+from variables import database, api_token
 
 logging.basicConfig(
     filename="logs.log",
@@ -52,13 +52,7 @@ logger = logging.getLogger(__name__)
 def db_intialize(db: sqlite3.Connection):
     cur = db.cursor()
 
-    cur = db.execute(
-        """
-        create table if not exists bot_data (
-            total_forms int
-        )
-        """
-    )
+    cur = db.execute(database.bot_data)
 
     cur = db.execute("select * from bot_data")
 
@@ -68,71 +62,19 @@ def db_intialize(db: sqlite3.Connection):
             insert into bot_data values(0)
         """
         )
-
-    cur = db.execute(
-        """
-        create table if not exists user_table (
-        user_id int primary key, 
-        form_count int not null
-        );
-        """
-    )
-
-    cur = db.execute(
-        """
-        create table if not exists form_table (
-        form_id int primary key, 
-        form_title text not null, 
-        user_id int references user_table(user_id), question_count int
-        );
-        """
-    )
-
-    cur = db.execute(
-        """
-        create table if not exists question_table (
-        form_id int references form_table(form_id) on delete cascade, 
-        title text, 
-        question_id int not null, 
-        question_desc text not null
-        );
-        """
-    )
-
-    cur = db.execute(
-        """
-        create table if not exists answer_table (
-        user_id int references user_table(user_id),
-        name text,
-        form_id int references form_table(form_id) on delete cascade,
-        answers text not null,       
-        );
-        """
-    )
-
+    tables = database.get_tables()
+    for i in tables:
+        db.execute(i)
     db.commit()
     db.close()
 
 
 def main():
     db_intialize(db_connect())
-    api_token = "1869792637:AAETw6wyWCNr68OMuUxgkhwMpp-m0dQMoSI"
+
     updater = Updater(api_token)
 
     d = updater.dispatcher
-
-    """ d.add_handler(
-        ConversationHandler(
-            entry_points=[CommandHandler("start", start_command)],
-            states={
-                1: [
-                    MessageHandler(Filters.command, typing_commands_in_CH),
-                    MessageHandler(Filters.text, answering),
-                ]
-            },
-            fallbacks=[MessageHandler(Filters.all, invalid_typing_in_answers)],
-        )
-    ) """
 
     d.add_handler(
         ConversationHandler(
@@ -182,6 +124,7 @@ def main():
     d.add_handler(CommandHandler("help", help_command))
     d.add_handler(MessageHandler(Filters.command, unknown_commands))
     d.add_handler(MessageHandler(Filters.all, unknown_messages))
+    
     updater.bot.set_my_commands(
         [
             BotCommand("start", "Start Me"),

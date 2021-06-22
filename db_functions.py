@@ -28,7 +28,7 @@ def title_check_db(user_id, title):
     tl_list = cur.fetchall()
     for i in tl_list:
         if title == i[1]:
-            return tl_list
+            return i
     return []
 
 def answer_check_db(form_id):

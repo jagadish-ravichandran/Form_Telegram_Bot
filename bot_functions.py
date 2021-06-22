@@ -1,10 +1,10 @@
 from telegram.ext import ConversationHandler, CallbackContext
-from telegram import Update
+from telegram import Update, user
 import logging
 import os
 from tabulate import tabulate
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
-
+from variables import cancel_button
 from db_functions import (
     db_connect,
     title_check_db,
@@ -12,7 +12,6 @@ from db_functions import (
     creating_csv_for_each_form,
 )
 
-cancel_button = [["Cancel"]]
 cancel_markup = ReplyKeyboardMarkup(
     cancel_button, one_time_keyboard=False, resize_keyboard=True
 )
@@ -82,8 +81,9 @@ def start_command(update: Update, context: CallbackContext):
         ownerid, formid = list(map(int, context.args[0].split("_")))
         current_form = extract_form(formid, ownerid)
 
-        if current_form is None:
+        if current_form == []:
             db.close()
+            update.effective_message.reply_text("This form is invalid!\nIt maybe deleted by creator")
             return beginning(update, context)
 
         cur = db.execute(
@@ -93,7 +93,7 @@ def start_command(update: Update, context: CallbackContext):
             update.effective_message.reply_text("You answered this form already !")
             db.close()
             return beginning(update, context)
-
+        
         context.user_data["form"] = current_form
         context.user_data["answers"] = []
         context.user_data["qns_to_answer"] = current_form[0][0]
@@ -288,6 +288,7 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
             tracker += 1
 
 
+### displaying all forms 
 def view_forms(update: Update, context: CallbackContext):
     userid = update.effective_user.id
     flist = extract_form(formid=None, userid=userid)
@@ -298,30 +299,75 @@ def view_forms(update: Update, context: CallbackContext):
         return
     displaying_each_form(update, context, flist)
 
+### unfinished
+### displaying specific form by title
+def showing_specific_form(update : Update,context : CallbackContext):
+    title = update.effective_message.text ##get the title of the form the user wants
+    userid = int(update.effective_user.id)
+    form = title_check_db(userid, title)
+    if form == []:
+        update.effective_message.reply_text(f"There is no form named {title}!")
+        return
+    else:
+        formid = form[0] ## this gives the form id for the given title
+        flist = extract_form(formid, userid)
+        displaying_each_form(update, context,flist)
 
+
+### showing all answers for all forms
 def show_answers(update: Update, context: CallbackContext):
     userid = update.effective_user.id
+    ans_ck = creating_csv_for_answers_for_all_forms(update, context, userid)
+    if ans_ck == 0:
+        update.effective_message.reply_text("There are no answers available for your all forms!")
+    else:    
+        update.effective_message.reply_text("Preview and its csv file will be uploaded !")
     
-    update.effective_message.reply_text("Preview and its csv file will be uploaded !")
-    creating_csv_for_answers_for_all_forms(update, context, userid)
+
+### unfinished
+### showing answers for specific form by title
+def showing_specific_form_answers(update : Update,context : CallbackContext):
+    title = update.effective_message.text ##get the title of the form the user wants
+    userid = int(update.effective_user.id)
+    form = title_check_db(userid, title)
+    if form == []:
+        update.effective_message.reply_text(f"There is no form named {title}!")
+        return
+    else:
+        formid = form[0] ## this gives the form id for the given title
+
+        #sending the formid arguement to get the answers for specific form
+        ans_ck = creating_csv_for_answers_for_all_forms(update, context, formid) 
+
+        if ans_ck == 0:
+            update.effective_message.reply_text("There is no answers for this form!")
 
 
 def creating_csv_for_answers_for_all_forms(
-    update: Update, context: CallbackContext, userid
+    update: Update, context: CallbackContext, userid, formid=None
 ):
     db = db_connect()
     cur = db.cursor()
 
     ## extracting the form id for a given user id
-    cur = db.execute(
-        f"select ft.question_count, ft.form_id, ft.form_title from user_table ut, form_table ft where ut.user_id = {userid} and ft.user_id={userid}"
-    )
+
+    if formid == None:
+        cur = db.execute(
+            f"select ft.question_count, ft.form_id, ft.form_title from user_table ut, form_table ft where ut.user_id = {userid} and ft.user_id={userid}"
+        )
+    else:
+        cur = db.execute(
+            f"select ft.question_count, ft.form_id, ft.form_title from user_table ut, form_table ft where ut.user_id = {userid} and ft.user_id={userid} and ft.form_id = {formid}"
+        )
+
     anslist = cur.fetchall()
+    flag=0
     # db.close()
     for i in anslist:
         csv_file, total_tab = creating_csv_for_each_form(i, userid)
         if csv_file is None:
             continue
+        flag=1
         caption_text = f"Total questions : {i[0]}\n"
         cur = db.execute(
             f"select count(distinct user_id) from answer_table where form_id={i[1]}"
@@ -339,6 +385,7 @@ def creating_csv_for_answers_for_all_forms(
         )
 
         os.remove(csv_file)
+    return flag
 
 
 def cancel_command(update: Update, context: CallbackContext):
