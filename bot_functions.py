@@ -3,7 +3,12 @@ from telegram import Update, user
 import logging
 import os
 from tabulate import tabulate
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram import (
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+)
 from variables import cancel_button
 from db_functions import (
     db_connect,
@@ -15,6 +20,15 @@ from db_functions import (
 cancel_markup = ReplyKeyboardMarkup(
     cancel_button, one_time_keyboard=False, resize_keyboard=True
 )
+
+inline_keyboard_for_answers = [
+    [
+        InlineKeyboardButton("All forms", callback_data=1),
+        InlineKeyboardButton("Forms with Title", callback_data=2),
+    ]
+]
+
+answers_markup = InlineKeyboardMarkup(inline_keyboard_for_answers)
 
 logging.basicConfig(
     filename="logs.log",
@@ -83,7 +97,9 @@ def start_command(update: Update, context: CallbackContext):
 
         if current_form == []:
             db.close()
-            update.effective_message.reply_text("This form is invalid!\nIt maybe deleted by creator")
+            update.effective_message.reply_text(
+                "This form is invalid!\nIt maybe deleted by creator"
+            )
             return beginning(update, context)
 
         cur = db.execute(
@@ -93,7 +109,7 @@ def start_command(update: Update, context: CallbackContext):
             update.effective_message.reply_text("You answered this form already !")
             db.close()
             return beginning(update, context)
-        
+
         context.user_data["form"] = current_form
         context.user_data["answers"] = []
         context.user_data["qns_to_answer"] = current_form[0][0]
@@ -262,6 +278,7 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
     tracker = 1
     if context.user_data.get("last_form", None):
         tracker = context.user_data["last_form"]
+        del context.user_data["last_form"]
     title = ""
     id = 0
     questions = []
@@ -288,7 +305,7 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
             tracker += 1
 
 
-### displaying all forms 
+### displaying all forms
 def view_forms(update: Update, context: CallbackContext):
     userid = update.effective_user.id
     flist = extract_form(formid=None, userid=userid)
@@ -299,19 +316,20 @@ def view_forms(update: Update, context: CallbackContext):
         return
     displaying_each_form(update, context, flist)
 
+
 ### unfinished
 ### displaying specific form by title
-def showing_specific_form(update : Update,context : CallbackContext):
-    title = update.effective_message.text ##get the title of the form the user wants
+def showing_specific_form(update: Update, context: CallbackContext):
+    title = update.effective_message.text  ##get the title of the form the user wants
     userid = int(update.effective_user.id)
     form = title_check_db(userid, title)
     if form == []:
         update.effective_message.reply_text(f"There is no form named {title}!")
         return
     else:
-        formid = form[0] ## this gives the form id for the given title
+        formid = form[0]  ## this gives the form id for the given title
         flist = extract_form(formid, userid)
-        displaying_each_form(update, context,flist)
+        displaying_each_form(update, context, flist)
 
 
 ### showing all answers for all forms
@@ -319,25 +337,29 @@ def show_answers(update: Update, context: CallbackContext):
     userid = update.effective_user.id
     ans_ck = creating_csv_for_answers_for_all_forms(update, context, userid)
     if ans_ck == 0:
-        update.effective_message.reply_text("There are no answers available for your all forms!")
-    else:    
-        update.effective_message.reply_text("Preview and its csv file will be uploaded !")
-    
+        update.effective_message.reply_text(
+            "There are no answers available for your all forms!"
+        )
+    else:
+        update.effective_message.reply_text(
+            "Preview and its csv file will be uploaded !"
+        )
+
 
 ### unfinished
 ### showing answers for specific form by title
-def showing_specific_form_answers(update : Update,context : CallbackContext):
-    title = update.effective_message.text ##get the title of the form the user wants
+def showing_specific_form_answers(update: Update, context: CallbackContext):
+    title = update.effective_message.text  ##get the title of the form the user wants
     userid = int(update.effective_user.id)
     form = title_check_db(userid, title)
     if form == []:
         update.effective_message.reply_text(f"There is no form named {title}!")
         return
     else:
-        formid = form[0] ## this gives the form id for the given title
+        formid = form[0]  ## this gives the form id for the given title
 
-        #sending the formid arguement to get the answers for specific form
-        ans_ck = creating_csv_for_answers_for_all_forms(update, context, formid) 
+        # sending the formid arguement to get the answers for specific form
+        ans_ck = creating_csv_for_answers_for_all_forms(update, context, formid)
 
         if ans_ck == 0:
             update.effective_message.reply_text("There is no answers for this form!")
@@ -361,13 +383,13 @@ def creating_csv_for_answers_for_all_forms(
         )
 
     anslist = cur.fetchall()
-    flag=0
+    flag = 0
     # db.close()
     for i in anslist:
         csv_file, total_tab = creating_csv_for_each_form(i, userid)
         if csv_file is None:
             continue
-        flag=1
+        flag = 1
         caption_text = f"Total questions : {i[0]}\n"
         cur = db.execute(
             f"select count(distinct user_id) from answer_table where form_id={i[1]}"
@@ -420,3 +442,16 @@ def unknown_messages(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         "Use commands only !\nPlease type /help to know my commands"
     )
+
+
+def answer_query(update: Update, context: CallbackContext):
+    query = update.callback_query
+
+    
+
+
+def answer_ck(update: Update, context: CallbackContext):
+    update.effective_message.reply_text(
+        "Enter any given option : ",reply_markup = answers_markup
+    )
+    
