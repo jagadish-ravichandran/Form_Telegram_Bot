@@ -9,8 +9,7 @@ from telegram.ext import (
 from telegram.ext.callbackcontext import CallbackContext
 from telegram.files.file import File
 
-from functions import (
-    db_connect,
+from bot_functions import (
     help_command,
     invalid_qn_number,
     invalid_title,
@@ -28,6 +27,10 @@ from functions import (
     unknown_commands,
     unknown_messages,
     view_forms,
+)
+
+from db_functions import (
+    db_connect,
 )
 
 from telegram import Bot, Update
@@ -88,8 +91,8 @@ def db_intialize(db: sqlite3.Connection):
     cur = db.execute(
         """
         create table if not exists question_table (
-        form_id int references form_table(form_id), 
-        title text references form_table(form_title), 
+        form_id int references form_table(form_id) on delete cascade, 
+        title text, 
         question_id int not null, 
         question_desc text not null
         );
@@ -101,8 +104,8 @@ def db_intialize(db: sqlite3.Connection):
         create table if not exists answer_table (
         user_id int references user_table(user_id),
         name text,
-        form_id int references form_table(form_id),
-        answers text not null
+        form_id int references form_table(form_id) on delete cascade,
+        answers text not null,       
         );
         """
     )
@@ -185,7 +188,7 @@ def main():
             BotCommand("create", "Form Creation"),
             BotCommand("view_forms", "Your Forms"),
             BotCommand("answers", "Answers for your Forms"),
-            BotCommand("help", "Available commands")
+            BotCommand("help", "Available commands"),
         ]
     )
     updater.start_polling()

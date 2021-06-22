@@ -1,32 +1,34 @@
-from sqlite3.dbapi2 import Cursor
 from telegram.ext import ConversationHandler, CallbackContext
-import sqlite3
-from telegram import Update, user
+from telegram import Update
 import logging
-import csv
 import os
 from tabulate import tabulate
-
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
+
+from db_functions import (
+    db_connect,
+    title_check_db,
+    extract_form,
+    creating_csv_for_each_form,
+)
 
 cancel_button = [["Cancel"]]
 cancel_markup = ReplyKeyboardMarkup(
     cancel_button, one_time_keyboard=False, resize_keyboard=True
 )
 
+logging.basicConfig(
+    filename="logs.log",
+    filemode="w",
+    format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
+    level=logging.DEBUG,
+)
 
-def show_table(db: sqlite3.Connection, name: str):
-    print(db.execute(f"select * from {name}").fetchall())
-
-
-def db_connect():
-    db_con = sqlite3.connect("form_bot_db")
-    return db_con
+logger = logging.getLogger(__name__)
 
 
 def invalid_typing_in_answers(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid answer! Please enter valid text")
-
     return 0
 
 
@@ -112,24 +114,18 @@ def creating_form(update: Update, context: CallbackContext):
     )
     return 1
 
-def title_repition_check_db(user_id, title):
-    db = db_connect()
-    cur = db.cursor()
-    cur = db.execute(f"select form_title from form_table where user_id={user_id}")
-    tl_list = cur.fetchall()
-    for i in tl_list:
-        if title == i[0]:
-            return True
-    return False
 
 def title_of_form(update: Update, context: CallbackContext):
     title = update.message.text
     userid = int(update.effective_user.id)
-    tl_ck = title_repition_check_db(userid, title)
+    tl_ck = title_check_db(userid, title)
 
     if tl_ck:
-        update.effective_message.reply_text("The form title is already entered!\nPlease enter other title: ")
-        return 2
+        update.effective_message.reply_text(
+            "The form title is already entered!\nPlease enter other title: "
+        )
+        return 1
+
     context.user_data["title"] = title
     update.effective_message.reply_text(
         "Enter no. of questions do you want to add (limit 10)"
@@ -169,7 +165,7 @@ def answering(update: Update, context: CallbackContext):
             ans_text = ans_text + f"{(answers.index(i)+1)}. {i}\n"
         update.effective_message.reply_html(ans_text)
         storing_answers(update, context)
-        update.effective_message.reply_text("Your answeres are saved ! \nThank You! ")
+        update.effective_message.reply_text("Your answers are saved ! \nThank You! ")
         return beginning(update, context)
 
     else:
@@ -203,7 +199,9 @@ def questions_started(update: Update, context: CallbackContext):
     # logging.info(context.user_data)
 
     if context.user_data["current_question"] == context.user_data["question_count"]:
-        update.effective_message.reply_text("Your questions are saved successfully")
+        update.effective_message.reply_text(
+            "Your questions are saved successfully", reply_markup=ReplyKeyboardRemove()
+        )
 
     else:
         context.user_data["current_question"] += 1
@@ -260,24 +258,6 @@ def questions_started(update: Update, context: CallbackContext):
     return ConversationHandler.END
 
 
-def extract_form(formid, userid) -> list:
-    db = db_connect()
-    cur = db.cursor()
-    if formid is None:
-        cur = db.execute(
-            f"select ft.question_count, qt.* from question_table qt,form_table ft where ft.user_id = {userid} and qt.form_id = ft.form_id"
-        )
-
-    else:
-        cur = db.execute(
-            f"select ft.question_count, qt.* from question_table qt, form_table ft where ft.user_id={userid} and ft.form_id = {formid} and qt.form_id = {formid}"
-        )
-    # cur = db.execute("select * from question table where form_")
-    result = cur.fetchall()
-    db.close()
-    return result
-
-
 def displaying_each_form(update: Update, context: CallbackContext, flist: list) -> str:
     tracker = 1
     if context.user_data.get("last_form", None):
@@ -311,59 +291,19 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
 def view_forms(update: Update, context: CallbackContext):
     userid = update.effective_user.id
     flist = extract_form(formid=None, userid=userid)
+    if flist == []:
+        update.effective_message.reply_text(
+            "No forms created !\nType /create to start creating forms"
+        )
+        return
     displaying_each_form(update, context, flist)
 
 
 def show_answers(update: Update, context: CallbackContext):
     userid = update.effective_user.id
+    
     update.effective_message.reply_text("Preview and its csv file will be uploaded !")
     creating_csv_for_answers_for_all_forms(update, context, userid)
-
-
-def creating_csv_for_each_form(form_records, userid):
-    db = db_connect()
-    cur = db.cursor()
-    qcount = form_records[0]
-    formid = form_records[1]
-    ans_dict = {}
-    cur = db.execute(f"select name,answers from answer_table where form_id={formid}")
-    ans_list = cur.fetchall()
-
-    if ans_list == []:
-        return (None, None)
-    tracker = 0
-    for j in ans_list:
-        if tracker == qcount:
-            tracker = 0
-        if tracker == 0:
-            ans_dict[j[0]] = []
-        ans_dict[j[0]].append(j[1])
-        tracker += 1
-
-    filename = f"csv_files/answers_{userid}:{formid}.csv"
-
-    cur = db.execute(
-        f"select question_id, question_desc from question_table,user_table ft where form_id = {formid} and ft.user_id = {userid}"
-    )
-    qn = cur.fetchall()
-
-    with open(file=filename, mode="w") as f:
-
-        csv_writer = csv.writer(f, delimiter=",")
-        total_tab = []
-        qlist = ["User"]
-        for i in qn:
-            qlist.append(f"{i[0]}. {i[1]}")
-        csv_writer.writerow(qlist)
-
-        total_tab.append(qlist[0:3])
-        for k, v in ans_dict.items():
-            v.insert(0, k)
-            if len(total_tab) <= 4:
-                total_tab.append(v)
-            csv_writer.writerow(v)
-
-    return (filename, total_tab)
 
 
 def creating_csv_for_answers_for_all_forms(
