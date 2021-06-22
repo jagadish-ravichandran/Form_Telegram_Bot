@@ -5,6 +5,7 @@ from telegram.ext import (
     ConversationHandler,
     MessageHandler,
     Filters,
+    CallbackQueryHandler,
 )
 from telegram.ext.callbackcontext import CallbackContext
 from telegram.files.file import File
@@ -27,6 +28,8 @@ from bot_functions import (
     unknown_commands,
     unknown_messages,
     view_forms,
+    answer_query,
+    answer_ck,
 )
 
 from db_functions import db_connect
@@ -120,11 +123,12 @@ def main():
     )
 
     d.add_handler(CommandHandler("view_forms", view_forms))
-    d.add_handler(CommandHandler("answers", show_answers))
+    d.add_handler(CommandHandler("answers", answer_ck))
+    d.add_handler(CallbackQueryHandler(answer_query))
     d.add_handler(CommandHandler("help", help_command))
     d.add_handler(MessageHandler(Filters.command, unknown_commands))
     d.add_handler(MessageHandler(Filters.all, unknown_messages))
-    
+
     updater.bot.set_my_commands(
         [
             BotCommand("start", "Start Me"),
