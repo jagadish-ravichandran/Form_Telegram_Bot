@@ -1,7 +1,23 @@
+from telegram import ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
+
 api_token = "1869792637:AAETw6wyWCNr68OMuUxgkhwMpp-m0dQMoSI"
 
 cancel_button = [["Cancel"]]
 
+
+cancel_markup = ReplyKeyboardMarkup(
+    cancel_button, one_time_keyboard=False, resize_keyboard=True
+)
+
+
+inline_kb = [
+    [
+        InlineKeyboardButton("All forms", callback_data=1),
+        InlineKeyboardButton("Forms with Title", callback_data=2),
+    ]
+]
+
+inline_markup = InlineKeyboardMarkup(inline_kb)
 
 class database:
 
@@ -22,7 +38,8 @@ class database:
     create table if not exists form_table (
     form_id int primary key, 
     form_title text not null, 
-    user_id int references user_table(user_id), question_count int
+    user_id int references user_table(user_id), 
+    question_count int
     );
     """
 
