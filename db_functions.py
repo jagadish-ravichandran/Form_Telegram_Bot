@@ -31,6 +31,13 @@ def title_check_db(user_id, title):
             return i
     return []
 
+### retrieving titles of all forms along with form_id
+def title_extraction(user_id):
+    db = db_connect()
+    cur = db.cursor()
+    cur = db.execute(f"select form_id, form_title from form_table where user_id={user_id}")
+    return cur.fetchall()
+
 def answer_check_db(form_id):
     
     pass
