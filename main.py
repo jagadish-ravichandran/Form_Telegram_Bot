@@ -1,46 +1,40 @@
-from telegram.botcommand import BotCommand
-from telegram.ext import (
-    Updater,
-    CommandHandler,
-    ConversationHandler,
-    MessageHandler,
-    Filters,
-    CallbackQueryHandler,
-)
-from telegram.ext.callbackcontext import CallbackContext
-from telegram.files.file import File
-
+from answer_functions import answer_ck, answer_query
+from form_functions import view_forms_ck, view_query
 from bot_functions import (
+    answering,
+    cancel_command,
+    creating_form,
     help_command,
     invalid_qn_number,
     invalid_title,
     invalid_typing_in_answers,
     invalid_typing_in_questions,
-    show_answers,
-    start_command,
-    creating_form,
-    cancel_command,
     no_of_questions,
     questions_started,
-    answering,
+    start_command,
     title_of_form,
     typing_commands_in_CH,
     unknown_commands,
     unknown_messages,
-    view_forms,
-    answer_query,
-    answer_ck,
 )
-
-from db_functions import db_connect
-
-from telegram import Bot, Update
-
+import logging
 import sqlite3
 
-import logging
+from telegram import Bot, Update
+from telegram.botcommand import BotCommand
+from telegram.ext import (
+    CallbackQueryHandler,
+    CommandHandler,
+    ConversationHandler,
+    Filters,
+    MessageHandler,
+    Updater,
+)
+from telegram.ext.callbackcontext import CallbackContext
+from telegram.files.file import File
 
-from variables import database, api_token
+from db_functions import db_connect
+from variables import api_token, database
 
 logging.basicConfig(
     filename="logs.log",
@@ -122,9 +116,26 @@ def main():
         )
     )
 
-    d.add_handler(CommandHandler("view_forms", view_forms))
-    d.add_handler(CommandHandler("answers", answer_ck))
+    d.add_handler(
+        ConversationHandler(
+            entry_points=[CommandHandler("view_forms", view_forms_ck)],
+            states={0: [CallbackQueryHandler(view_query)]},
+            fallbacks=[],
+        )
+    )
+
+    d.add_handler(
+        ConversationHandler(
+            entry_points=[CommandHandler("answers", answer_ck)],
+            states={0: [CallbackQueryHandler(answer_query)]},
+            fallbacks=[],
+        )
+    )
+
+    d.add_handler(CallbackQueryHandler(view_query))
+
     d.add_handler(CallbackQueryHandler(answer_query))
+
     d.add_handler(CommandHandler("help", help_command))
     d.add_handler(MessageHandler(Filters.command, unknown_commands))
     d.add_handler(MessageHandler(Filters.all, unknown_messages))
