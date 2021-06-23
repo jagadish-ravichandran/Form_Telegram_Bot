@@ -12,8 +12,8 @@ cancel_markup = ReplyKeyboardMarkup(
 
 inline_kb = [
     [
-        InlineKeyboardButton("All forms", callback_data=1),
-        InlineKeyboardButton("Forms with Title", callback_data=2),
+        InlineKeyboardButton("All forms", callback_data="All forms"),
+        InlineKeyboardButton("Forms with Title", callback_data="Forms with Title"),
     ]
 ]
 

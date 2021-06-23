@@ -10,7 +10,7 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
     tracker = 1
     if context.user_data.get("last_form", None):
         tracker = context.user_data["last_form"]
-        del context.user_data["last_form"]
+        context.user_data= {}
     title = ""
     id = 0
     questions = []
@@ -31,7 +31,11 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
                 complete_form_text += f"{questions.index(j)+1}. {j}\n"
             form_link = f"https://t.me/{context.bot.username}?start={update.effective_user.id}_{id}"
             complete_form_text += form_link
-            update.effective_message.reply_text(complete_form_text)
+            if update.callback_query == None:
+                update.effective_message.reply_text(complete_form_text)
+            else:
+                update.callback_query.edit_message_text(complete_form_text)
+            
             title = ""
             questions = []
             tracker += 1
@@ -67,11 +71,12 @@ def showing_specific_form(update: Update, context: CallbackContext):
 def view_query(update : Update,context : CallbackContext):
     query = update.callback_query
     userid = update.effective_user.id
-    if query.data == "1":
+    if query.data == "All forms":
         query.edit_message_text("Displaying all the forms you have created !")
         view_forms(update, context)
         return ConversationHandler.END
-    else:
+    
+    elif query.data == "Forms with Title":
         numbering = []
         title_text = "Showing the titles of forms :\n"
         title_list = title_extraction(userid)
@@ -89,11 +94,18 @@ def view_query(update : Update,context : CallbackContext):
 
         query.edit_message_text(title_text)
 
-
         update.effective_message.reply_text("Select the form you want : ", reply_markup= InlineKeyboardMarkup(numbering))
+        return 0
+
+    else:
+        form_id = query.data
+        flist = extract_form(formid=form_id, userid=userid)
+        displaying_each_form(update, context, flist)
+        return ConversationHandler.END
+        
 
 def view_forms_ck(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         "Enter any given option : ",reply_markup = inline_markup
     )
-    return 0
+    return 0    
