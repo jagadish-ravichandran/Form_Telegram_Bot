@@ -10,14 +10,14 @@ cancel_markup = ReplyKeyboardMarkup(
 )
 
 
-inline_kb = [
-    [
-        InlineKeyboardButton("All forms", callback_data="All forms"),
-        InlineKeyboardButton("Forms with Title", callback_data="Forms with Title"),
-    ]
-]
+# inline_kb = [
+#     [
+#         InlineKeyboardButton("All forms", callback_data="All forms"),
+#         InlineKeyboardButton("Forms with Title", callback_data="Forms with Title"),
+#     ]
+# ]
 
-inline_markup = InlineKeyboardMarkup(inline_kb)
+# inline_markup = InlineKeyboardMarkup(inline_kb)
 
 class database:
 
