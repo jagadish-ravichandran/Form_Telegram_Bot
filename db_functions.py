@@ -61,6 +61,9 @@ def extract_form(formid, userid) -> list:
 
 
 def creating_csv_for_each_form(form_records, userid):
+
+    # print(form_records)
+
     db = db_connect()
     cur = db.cursor()
     qcount = form_records[0]
