@@ -1,15 +1,27 @@
 
+import logging
 import os
 from tabulate import tabulate
-from db_functions import creating_csv_for_each_form, db_connect, title_check_db
-from telegram import Update
+from db_functions import creating_csv_for_each_form, db_connect, title_check_db, title_extraction
+from telegram import Update,InlineKeyboardButton, InlineKeyboardMarkup
+
 from telegram.ext import CallbackContext, ConversationHandler
-from variables import inline_markup
+# from variables import inline_markup
+
+
+logging.basicConfig(
+    filename="logs.log",
+    filemode="w",
+    format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
+    level=logging.DEBUG,
+)
+
+logger = logging.getLogger(__name__)
 
 ### showing all answers for all forms
 def show_answers(update: Update, context: CallbackContext):
     userid = update.effective_user.id
-    ans_ck = creating_csv_for_answers_for_all_forms(update, context, userid)
+    ans_ck = creating_csv_for_answers_for_all_forms(update, context, userid,None)
     if ans_ck == 0:
         update.effective_message.reply_text(
             "There are no answers available for your all forms!"
@@ -33,18 +45,18 @@ def showing_specific_form_answers(update: Update, context: CallbackContext):
         formid = form[0]  ## this gives the form id for the given title
 
         # sending the formid arguement to get the answers for specific form
-        ans_ck = creating_csv_for_answers_for_all_forms(update, context, formid)
+        ans_ck = creating_csv_for_answers_for_all_forms(update, context, userid, formid)
 
         if ans_ck == 0:
             update.effective_message.reply_text("There is no answers for this form!")
 
 
 def creating_csv_for_answers_for_all_forms(
-    update: Update, context: CallbackContext, userid, formid=None
+    update: Update, context: CallbackContext, userid, formid
 ):
     db = db_connect()
     cur = db.cursor()
-
+    # print(formid)
     ## extracting the form id for a given user id
 
     if formid == None:
@@ -57,6 +69,7 @@ def creating_csv_for_answers_for_all_forms(
         )
 
     anslist = cur.fetchall()
+    # print(anslist)
     flag = 0
     # db.close()
     for i in anslist:
@@ -72,8 +85,11 @@ def creating_csv_for_answers_for_all_forms(
         caption_text += f"Total users answered : {user_count}"
 
         tb = tabulate(total_tab, headers="firstrow", tablefmt="simple")
-        update.effective_message.reply_html(f"<pre>Title : {i[2]}\n{tb}!</pre>")
 
+        if update.callback_query:
+            update.callback_query.edit_message_text("Showing answers for the selected form : ")
+        
+        update.effective_message.reply_html(f"<pre>Title : {i[2]}\n{tb}!</pre>")
         update.effective_message.reply_document(
             document=open(file=csv_file, mode="r"),
             filename=f"{i[2]}-Answers",
@@ -86,19 +102,41 @@ def creating_csv_for_answers_for_all_forms(
 
 def answer_query(update: Update, context: CallbackContext):
     query = update.callback_query
-    if query.data == "1":
-        query.edit_message_text("Displaying all answers for the forms you have created !")
-        show_answers(update, context)
-        return ConversationHandler.END
+    data = query.data
+    userid = update.effective_user.id
+    formid = int(data.split("_")[1])
+    # print(formid)
+    query.answer("Display answers")
 
-    else :
-        query.edit_message_text("Showing the titles of forms :")
+    ans_ck = creating_csv_for_answers_for_all_forms(update, context, userid,formid)
 
-
+    if ans_ck == 0:
+        query.edit_message_text("There is no answers for this form!")
 
 def answer_ck(update: Update, context: CallbackContext):
-    update.effective_message.reply_text(
-        "Enter any given option : ",reply_markup = inline_markup
-    )
+    userid = update.effective_user.id
+    numbering = []
+    title_text = "Your forms :\n"
+    title_list = title_extraction(userid)
+    count = 1
+    temp_list = []
+    for form_id, title in title_list:
+        title_text += f"{count}. {title}\n"
+        
+        temp_list.append(InlineKeyboardButton(text=str(count), callback_data="answer_" + str(form_id)))
+        
+        if len(temp_list) == 4 :
+            numbering.append(temp_list)
+            temp_list = []
+
+        count += 1
+
+    
+    if temp_list:
+        numbering.append(temp_list)
+
+    # update.effective_message.reply_text(title_text)
+    update.effective_message.reply_text(title_text, reply_markup= InlineKeyboardMarkup(numbering))
+
     return 0
 
