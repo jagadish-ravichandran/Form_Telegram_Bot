@@ -13,7 +13,7 @@ db = sqlite3.connect("form_bot_db")
 #con.close()
 #exit()
 cur = db.cursor()
-#formid = 3
+formid = 3
 userid= 576048895
 
 #cur = db.execute("select * from question_table")
@@ -22,9 +22,11 @@ userid= 576048895
 #cur = db.execute(f"select ft.question_count, qt.* from question_table qt,form_table ft where ft.user_id = {userid} and qt.form_id = ft.form_id")
 #cur = db.execute(f"select * from form_table")
 
-cur = db.execute(f"select ft.question_count, ft.form_id from user_table ut, form_table ft where ut.user_id = {userid} and ft.user_id={userid}")
+cur = db.execute(
+            f"select ft.question_count, ft.form_id, ft.form_title from user_table ut, form_table ft where ut.user_id = {userid} and ft.user_id={userid} and ft.form_id = {formid}"
+        )
 flist = cur.fetchall()
-
+'''
 for i in flist:
     qcount = i[0]
     formid = i[1]
@@ -73,7 +75,7 @@ for i in flist:
 
 db.close()
 exit()
-'''
+
 form_dict = {}
 title = ""
 questions = []
