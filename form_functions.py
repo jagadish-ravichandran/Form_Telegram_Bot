@@ -1,16 +1,42 @@
+import logging
 import os
 from tabulate import tabulate
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from db_functions import creating_csv_for_each_form, db_connect, extract_form, title_check_db, title_extraction
 from telegram import Update, user
 from telegram.ext import CallbackContext, ConversationHandler
-from variables import inline_markup
+# from variables import inline_markup
+
+logging.basicConfig(
+    filename="logs.log",
+    filemode="w",
+    format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
+    level=logging.DEBUG,
+)
+
+logger = logging.getLogger(__name__)
 
 def displaying_each_form(update: Update, context: CallbackContext, flist: list) -> str:
+    print(flist)
+
     tracker = 1
+
     if context.user_data.get("last_form", None):
         tracker = context.user_data["last_form"]
-        context.user_data= {}
+        context.user_data.clear()
+
+    else:
+        formid = flist[0][1]
+        db = db_connect()
+        cur = db.cursor()
+        cur = db.execute(f"select form_id from form_table where user_id = {update.effective_user.id}")
+        form_list = cur.fetchall()
+        for i in form_list:
+            if i[0] == formid:
+                tracker = form_list.index(i) + 1
+                break
+
+
     title = ""
     id = 0
     questions = []
@@ -24,11 +50,14 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
 
         if len(questions) == i[0]:
             # form_dict[title] = questions
+            print("question list : ",questions)
             complete_form_text = f"Form {tracker} : \n\n"
             complete_form_text += f"Title : {title}\n"
             complete_form_text += f"Questions : \n"
+            count = 1
             for j in questions:
-                complete_form_text += f"{questions.index(j)+1}. {j}\n"
+                complete_form_text += f"{count}. {j}\n"
+                count += 1
             form_link = f"https://t.me/{context.bot.username}?start={update.effective_user.id}_{id}"
             complete_form_text += form_link
             if update.callback_query == None:
@@ -38,7 +67,8 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
             
             title = ""
             questions = []
-            tracker += 1
+            tracker+=1
+
 
 
 ### displaying all forms
@@ -70,42 +100,37 @@ def showing_specific_form(update: Update, context: CallbackContext):
 
 def view_query(update : Update,context : CallbackContext):
     query = update.callback_query
+    data = query.data
     userid = update.effective_user.id
-    if query.data == "All forms":
-        query.edit_message_text("Displaying all the forms you have created !")
-        view_forms(update, context)
-        return ConversationHandler.END
-    
-    elif query.data == "Forms with Title":
-        numbering = []
-        title_text = "Showing the titles of forms :\n"
-        title_list = title_extraction(userid)
-        count = 1
-        temp_list = []
-        for form_id, title in title_list:
-            title_text += f"{count}. {title}\n"
-            temp_list.append(InlineKeyboardButton(text=str(count), callback_data=str(form_id)))
+    formid = int(data.split("_")[1])
+    flist = extract_form(formid, userid)
+    displaying_each_form(update, context, flist)
 
-            if len(temp_list) == 2 :
-                numbering.append(temp_list)
-                temp_list = []
-
-            count += 1
-
-        query.edit_message_text(title_text)
-
-        update.effective_message.reply_text("Select the form you want : ", reply_markup= InlineKeyboardMarkup(numbering))
-        return 0
-
-    else:
-        form_id = query.data
-        flist = extract_form(formid=form_id, userid=userid)
-        displaying_each_form(update, context, flist)
-        return ConversationHandler.END
-        
 
 def view_forms_ck(update: Update, context: CallbackContext):
-    update.effective_message.reply_text(
-        "Enter any given option : ",reply_markup = inline_markup
-    )
-    return 0    
+    userid = update.effective_user.id
+    numbering = []
+    title_text = "Your forms :\n"
+    title_list = title_extraction(userid)
+    count = 1
+    temp_list = []
+    for form_id, title in title_list:
+        title_text += f"{count}. {title}\n"
+
+        temp_list.append(InlineKeyboardButton(text=str(count), callback_data="view_" + str(form_id)))
+        
+        if len(temp_list) == 4 :
+            numbering.append(temp_list)
+            temp_list = []
+
+        count += 1
+
+    if temp_list:
+        numbering.append(temp_list)
+
+    # update.effective_message.reply_text(title_text)
+    update.effective_message.reply_text(title_text,reply_markup=InlineKeyboardMarkup(numbering))
+
+    return 0
+
+
