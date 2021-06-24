@@ -1,3 +1,4 @@
+from constants import CreationState
 from answer_functions import answer_ck, answer_query
 from form_functions import view_forms_ck, view_query
 from bot_functions import (
@@ -67,6 +68,9 @@ def db_intialize(db: sqlite3.Connection):
 
 
 def main():
+
+    logging.info("\n------LOGGING STARTED-----\n")
+
     db_intialize(db_connect())
 
     updater = Updater(api_token)
@@ -80,12 +84,12 @@ def main():
                 CommandHandler("start", start_command),
             ],
             states={
-                0: [
+                CreationState.RECIEVING_ANSWERS: [
                     MessageHandler(Filters.command, typing_commands_in_CH),
                     MessageHandler(Filters.text, answering),
                     MessageHandler(Filters.all, invalid_typing_in_answers),
                 ],
-                1: [
+                CreationState.RECIEVING_TITLE: [
                     MessageHandler(Filters.command, typing_commands_in_CH),
                     MessageHandler(
                         Filters.text & ~Filters.regex("Cancel"), title_of_form
@@ -94,14 +98,14 @@ def main():
                         Filters.all & ~Filters.regex("Cancel"), invalid_title
                     ),
                 ],
-                2: [
+                CreationState.RECIEVING_QUESTION_COUNT: [
                     MessageHandler(Filters.command, typing_commands_in_CH),
                     MessageHandler(Filters.regex("[0-9]"), no_of_questions),
                     MessageHandler(
                         Filters.all & ~Filters.regex("Cancel"), invalid_qn_number
                     ),
                 ],
-                3: [
+                CreationState.RECIEVING_QUESTIONS: [
                     MessageHandler(Filters.command, typing_commands_in_CH),
                     MessageHandler(
                         Filters.text & ~Filters.regex("Cancel"), questions_started
@@ -116,25 +120,11 @@ def main():
         )
     )
 
-    d.add_handler(
-        ConversationHandler(
-            entry_points=[CommandHandler("view_forms", view_forms_ck)],
-            states={0: [CallbackQueryHandler(view_query)]},
-            fallbacks=[],
-        )
-    )
+    d.add_handler(CommandHandler("view_forms", view_forms_ck))
+    d.add_handler(CallbackQueryHandler(pattern = "^view_*",callback = view_query))
 
-    d.add_handler(
-        ConversationHandler(
-            entry_points=[CommandHandler("answers", answer_ck)],
-            states={0: [CallbackQueryHandler(answer_query)]},
-            fallbacks=[],
-        )
-    )
-
-    d.add_handler(CallbackQueryHandler(view_query))
-
-    d.add_handler(CallbackQueryHandler(answer_query))
+    d.add_handler(CommandHandler("answers", answer_ck))
+    d.add_handler(CallbackQueryHandler(pattern = "^answer_*",callback = answer_query))
 
     d.add_handler(CommandHandler("help", help_command))
     d.add_handler(MessageHandler(Filters.command, unknown_commands))
