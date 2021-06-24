@@ -1,3 +1,4 @@
+from constants import CreationState
 from form_functions import displaying_each_form
 from telegram.ext import ConversationHandler, CallbackContext
 from telegram import Update
@@ -26,22 +27,22 @@ logger = logging.getLogger(__name__)
 
 def invalid_typing_in_answers(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid answer! Please enter valid text")
-    return 0
+    return CreationState.RECIEVING_ANSWERS
 
 
 def invalid_title(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid title! Please enter valid text")
-    return 1
+    return CreationState.RECIEVING_TITLE
 
 
 def invalid_qn_number(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid entry !\nEnter number (1-10) : ")
-    return 2
+    return CreationState.RECIEVING_QUESTION_COUNT
 
 
 def invalid_typing_in_questions(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid question! Please enter valid text")
-    return 3
+    return CreationState.RECIEVING_QUESTIONS
 
 
 def typing_commands_in_CH(update: Update, context: CallbackContext):
@@ -55,16 +56,14 @@ def typing_commands_in_CH(update: Update, context: CallbackContext):
 
 def cancel_command(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Your current operation is cancelled")
-    return beginning(update, context)
+    return help_command(update, context)
 
 
 def unknown_commands(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         "Sorry, I didn't understand that command.", reply_markup=ReplyKeyboardRemove()
     )
-    update.effective_message.reply_text(
-        "Type /help to find my commands and their functions"
-    )
+    return help_command(update, context)
 
 
 def help_command(update: Update, context: CallbackContext):
@@ -79,6 +78,7 @@ Available commands :\n
     """,
         reply_markup=ReplyKeyboardRemove(),
     )
+    return ConversationHandler.END
 
 
 def unknown_messages(update: Update, context: CallbackContext):
@@ -91,7 +91,7 @@ def beginning(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         "I m here for creating forms", reply_markup=ReplyKeyboardRemove()
     )
-    update.effective_message.reply_text("Type /create to start creating")
+    update.effective_message.reply_text("Type /create to start creating or /help to know my commands")
     return ConversationHandler.END
 
 
@@ -138,7 +138,7 @@ def start_command(update: Update, context: CallbackContext):
         update.effective_message.reply_text(
             f"1. {current_form[0][4]}", reply_markup=cancel_markup
         )
-        return 0
+        return CreationState.RECIEVING_ANSWERS
 
 
 def creating_form(update: Update, context: CallbackContext):
@@ -146,7 +146,7 @@ def creating_form(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         "Enter the title for your form : ", reply_markup=cancel_markup
     )
-    return 1
+    return CreationState.RECIEVING_TITLE
 
 
 def title_of_form(update: Update, context: CallbackContext):
@@ -158,13 +158,13 @@ def title_of_form(update: Update, context: CallbackContext):
         update.effective_message.reply_text(
             "The form title is already entered!\nPlease enter other title: "
         )
-        return 1
+        return CreationState.RECIEVING_TITLE
 
     context.user_data["title"] = title
     update.effective_message.reply_text(
         "Enter no. of questions do you want to add (limit 10)"
     )
-    return 2
+    return CreationState.RECIEVING_QUESTION_COUNT
 
 
 def storing_answers(update: Update, context: CallbackContext):
@@ -200,6 +200,7 @@ def answering(update: Update, context: CallbackContext):
         update.effective_message.reply_html(ans_text)
         storing_answers(update, context)
         update.effective_message.reply_text("Your answers are saved ! \nThank You! ")
+        context.user_data.clear()
         return beginning(update, context)
 
     else:
@@ -208,7 +209,7 @@ def answering(update: Update, context: CallbackContext):
         ans_count = context.user_data["answer_count"]
         next_question = current_form[ans_count][4]
         update.effective_message.reply_text(f"{ans_count+1}. {next_question}")
-        return 0
+        return CreationState.RECIEVING_ANSWERS
 
 
 def no_of_questions(update: Update, context: CallbackContext):
@@ -216,7 +217,7 @@ def no_of_questions(update: Update, context: CallbackContext):
 
     if not 0 < question_count <= 10:
         update.effective_message.reply_text("Invalid entry !\nEnter number (1-10) : ")
-        return 2
+        return CreationState.RECIEVING_QUESTION_COUNT
     context.user_data["question_count"] = question_count
     context.user_data["current_question"] = 1
     context.user_data["questions"] = []
@@ -224,7 +225,7 @@ def no_of_questions(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         f"Enter your question number {context.user_data['current_question']}"
     )
-    return 3
+    return CreationState.RECIEVING_QUESTIONS
 
 
 def questions_started(update: Update, context: CallbackContext):
@@ -242,7 +243,7 @@ def questions_started(update: Update, context: CallbackContext):
         update.effective_message.reply_text(
             f"Enter your question number {context.user_data['current_question']}"
         )
-        return 3
+        return CreationState.RECIEVING_QUESTIONS
 
     userid = update.effective_user.id
     db = db_connect()
