@@ -21,7 +21,6 @@ from bot_functions import (
 import logging
 import sqlite3
 
-from telegram import Bot, Update
 from telegram.botcommand import BotCommand
 from telegram.ext import (
     CallbackQueryHandler,
@@ -31,8 +30,6 @@ from telegram.ext import (
     MessageHandler,
     Updater,
 )
-from telegram.ext.callbackcontext import CallbackContext
-from telegram.files.file import File
 
 from db_functions import db_connect
 from variables import api_token, database

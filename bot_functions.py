@@ -25,6 +25,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+## handling unexpected entries inside an Conversation Handler in questions and answers
 def invalid_typing_in_answers(update: Update, context: CallbackContext):
     update.effective_message.reply_text("Invalid answer! Please enter valid text")
     return CreationState.RECIEVING_ANSWERS
@@ -53,16 +54,21 @@ def typing_commands_in_CH(update: Update, context: CallbackContext):
     )
     return ConversationHandler.END
 
-
-def cancel_command(update: Update, context: CallbackContext):
-    update.effective_message.reply_text("Your current operation is cancelled")
-    return help_command(update, context)
-
+def unknown_messages(update: Update, context: CallbackContext):
+    update.effective_message.reply_text(
+        "Use commands only !\nPlease type /help to know my commands"
+    )
 
 def unknown_commands(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         "Sorry, I didn't understand that command.", reply_markup=ReplyKeyboardRemove()
     )
+    return help_command(update, context)
+
+
+## Reply Keyboard button = Cancel
+def cancel_command(update: Update, context: CallbackContext):
+    update.effective_message.reply_text("Your current operation is cancelled")
     return help_command(update, context)
 
 
@@ -81,17 +87,11 @@ Available commands :\n
     return ConversationHandler.END
 
 
-def unknown_messages(update: Update, context: CallbackContext):
-    update.effective_message.reply_text(
-        "Use commands only !\nPlease type /help to know my commands"
-    )
-
-
 def beginning(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         "I m here for creating forms", reply_markup=ReplyKeyboardRemove()
     )
-    update.effective_message.reply_text("Type /create to start creating or /help to know my commands")
+    update.effective_message.reply_text("Type /create to start creating forms or /help to know my commands")
     return ConversationHandler.END
 
 
