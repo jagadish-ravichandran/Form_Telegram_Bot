@@ -277,7 +277,7 @@ def creating_csv_for_each_form(form_records, userid):
         for k, v in ans_dict.items():
             v.insert(0, k)
             if len(total_tab) <= 4:
-                total_tab.append(v)
+                total_tab.append(v[:3])
             csv_writer.writerow(v)
 
     return (filename, total_tab) ## returning filename and preview text
