@@ -45,7 +45,7 @@ def creating_csv_for_answers_for_all_forms(update: Update, context: CallbackCont
         update.effective_message.reply_html(f"<pre>Title : {i[2]}\n{tb}!</pre>")
         update.effective_message.reply_document(
             document=open(file=csv_file, mode="r"),
-            filename=f"{i[2]}-Answers",
+            filename=f"{i[2]}-Answers.csv",
             caption=caption_text,
         )
 
