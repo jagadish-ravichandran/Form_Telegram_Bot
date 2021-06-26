@@ -1,3 +1,4 @@
 project_environment/
 __pycache__
 logs.log
+CONFIG.py
