@@ -1,6 +1,4 @@
-from telegram import ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
-
-api_token = "1869792637:AAETw6wyWCNr68OMuUxgkhwMpp-m0dQMoSI"
+from telegram import ReplyKeyboardMarkup
 
 cancel_button = [["Cancel"]]
 
@@ -9,15 +7,6 @@ cancel_markup = ReplyKeyboardMarkup(
     cancel_button, one_time_keyboard=False, resize_keyboard=True
 )
 
-
-# inline_kb = [
-#     [
-#         InlineKeyboardButton("All forms", callback_data="All forms"),
-#         InlineKeyboardButton("Forms with Title", callback_data="Forms with Title"),
-#     ]
-# ]
-
-# inline_markup = InlineKeyboardMarkup(inline_kb)
 
 class database:
 
@@ -63,8 +52,3 @@ class database:
     @staticmethod
     def get_tables():
         return [database.user_table, database.form_table, database.question_table, database.answer_table]
-
-
-
-
-
