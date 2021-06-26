@@ -10,7 +10,11 @@ from telegram import (
 )
 from variables import cancel_markup
 from db_functions import (
-    db_connect,
+    Answers,
+    Bot,
+    Form,
+    Questions,
+    User,
     title_check_db,
     extract_form,
 )
@@ -96,15 +100,9 @@ def beginning(update: Update, context: CallbackContext):
 
 
 def start_command(update: Update, context: CallbackContext):
-    db = db_connect()
-    cur = db.cursor()
     userid = int(update.effective_user.id)
 
-    cur = db.execute(f"select * from user_table where user_id={userid}")
-    if len(cur.fetchall()) == 0:
-        cur = db.execute(f"insert into user_table values({userid},0)")
-        db.commit()
-        db.close()
+    User.add_user(userid)
 
     if not context.args:
         return beginning(update, context)
@@ -114,18 +112,14 @@ def start_command(update: Update, context: CallbackContext):
         current_form = extract_form(formid, ownerid)
 
         if current_form == []:
-            db.close()
             update.effective_message.reply_text(
                 "This form is invalid!\nIt maybe deleted by creator"
             )
             return beginning(update, context)
 
-        cur = db.execute(
-            f"select distinct form_id from answer_table where user_id={userid} and form_id = {formid}"
-        )
-        if cur.fetchone():
+        
+        if User.is_answered(userid, formid):
             update.effective_message.reply_text("You answered this form already !")
-            db.close()
             return beginning(update, context)
 
         context.user_data["form"] = current_form
@@ -152,6 +146,8 @@ def creating_form(update: Update, context: CallbackContext):
 def title_of_form(update: Update, context: CallbackContext):
     title = update.message.text
     userid = int(update.effective_user.id)
+
+    ## checking already existing form title and inform if any
     tl_ck = title_check_db(userid, title)
 
     if tl_ck:
@@ -168,24 +164,20 @@ def title_of_form(update: Update, context: CallbackContext):
 
 
 def storing_answers(update: Update, context: CallbackContext):
-    db = db_connect()
     user_id = update.effective_user.id
     name = update.effective_user.full_name
     form_id = context.user_data["form"][0][1]
     answers = context.user_data["answers"]
     count = context.user_data["answer_count"]
     for i in range(count):
-        db.execute(
-            "insert into answer_table values(?,?,?,?)",
-            (user_id, name, form_id, answers[i]),
-        )
-    db.commit()
-    db.close()
-
+        at_record = (user_id, name, form_id, answers[i])
+        Answers.storing_answers(at_record)
+        
 
 def answering(update: Update, context: CallbackContext):
     if update.effective_message.text == "Cancel":
         return cancel_command(update, context)
+
     current_form = context.user_data["form"]
     qcount = context.user_data["qns_to_answer"]
     answers = context.user_data["answers"]
@@ -195,8 +187,10 @@ def answering(update: Update, context: CallbackContext):
         answers.append(update.effective_message.text)
         context.user_data["answer_count"] += 1
         ans_text = "Your answers are : \n"
+        counter = 1
         for i in answers:
-            ans_text = ans_text + f"{(answers.index(i)+1)}. {i}\n"
+            ans_text = ans_text + f"{counter}. {i}\n"
+            counter += 1
         update.effective_message.reply_html(ans_text)
         storing_answers(update, context)
         update.effective_message.reply_text("Your answers are saved ! \nThank You! ")
@@ -246,48 +240,29 @@ def questions_started(update: Update, context: CallbackContext):
         return CreationState.RECIEVING_QUESTIONS
 
     userid = update.effective_user.id
-    db = db_connect()
-
+    
     # increasing user form count
-    cur = db.execute(f"select form_count from user_table where user_id = {userid}")
-
-    user_form_count = cur.fetchone()[0]
-    user_form_count += 1
-
-    cur = db.execute(
-        f"update user_table set form_count = {user_form_count} where user_id = {userid}"
-    )
+    user_form_count = User.increase_form_count(userid)
 
     # increasing total form count
-    cur = db.execute("select total_forms from bot_data")
+    total_forms = Bot.increase_form_count()
 
-    total_forms = cur.fetchone()[0]
 
-    total_forms += 1
-
-    cur = db.execute(f"update bot_data set total_forms = {total_forms}")
-
-    # generating form id and inserting to form table
-
+    # inserting to form table
     title = context.user_data["title"]
     qcount = context.user_data["question_count"]
     ft_record = (total_forms, title, userid, qcount)
-    cur = db.execute("insert into form_table values (?,?,?,?)", ft_record)
-
-    # show_table(db, "form_table")
+    Form.insert_values(ft_record)
 
     # inserting questions to question table
     for i in range(1, qcount + 1):
         question_desc = context.user_data["questions"][i - 1]
         qt_record = (total_forms, title, i, question_desc)
-        cur = db.execute("insert into question_table values(?, ?, ?,?)", qt_record)
+        Questions.insert_values(qt_record)
 
-    db.commit()
 
     # displaying the last generated form
     last_form = extract_form(total_forms, userid)
     context.user_data["last_form"] = user_form_count
     displaying_each_form(update, context, last_form)
-    db.close()
-
     return ConversationHandler.END

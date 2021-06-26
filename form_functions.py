@@ -2,7 +2,7 @@ import logging
 import os
 from tabulate import tabulate
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from db_functions import creating_csv_for_each_form, db_connect, extract_form, title_check_db, title_extraction
+from db_functions import Form, creating_csv_for_each_form, db_connect, extract_form, title_check_db, title_extraction
 from telegram import Update, user
 from telegram.ext import CallbackContext, ConversationHandler
 # from variables import inline_markup
@@ -17,20 +17,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def displaying_each_form(update: Update, context: CallbackContext, flist: list) -> str:
-    print(flist)
-
     tracker = 1
-
     if context.user_data.get("last_form", None):
         tracker = context.user_data["last_form"]
         context.user_data.clear()
 
     else:
         formid = flist[0][1]
-        db = db_connect()
-        cur = db.cursor()
-        cur = db.execute(f"select form_id from form_table where user_id = {update.effective_user.id}")
-        form_list = cur.fetchall()
+        userid = update.effective_user.id
+        form_list = Form.get_formid(userid)
         for i in form_list:
             if i[0] == formid:
                 tracker = form_list.index(i) + 1
@@ -58,8 +53,9 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
             for j in questions:
                 complete_form_text += f"{count}. {j}\n"
                 count += 1
-            form_link = f"https://t.me/{context.bot.username}?start={update.effective_user.id}_{id}"
+            form_link = f"https://t.me/{context.bot.username}?start={userid}_{id}"
             complete_form_text += form_link
+            
             if update.callback_query == None:
                 update.effective_message.reply_text(complete_form_text)
             else:
@@ -68,34 +64,6 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
             title = ""
             questions = []
             tracker+=1
-
-
-
-### displaying all forms
-def view_forms(update: Update, context: CallbackContext):
-    userid = update.effective_user.id
-    flist = extract_form(formid=None, userid=userid)
-    if flist == []:
-        update.effective_message.reply_text(
-            "No forms created !\nType /create to start creating forms"
-        )
-        return
-    displaying_each_form(update, context, flist)
-
-
-### unfinished
-### displaying specific form by title
-def showing_specific_form(update: Update, context: CallbackContext):
-    title = update.effective_message.text  ##get the title of the form the user wants
-    userid = int(update.effective_user.id)
-    form = title_check_db(userid, title)
-    if form == []:
-        update.effective_message.reply_text(f"There is no form named {title}!")
-        return
-    else:
-        formid = form[0]  ## this gives the form id for the given title
-        flist = extract_form(formid, userid)
-        displaying_each_form(update, context, flist)
 
 
 def view_query(update : Update,context : CallbackContext):

@@ -19,7 +19,6 @@ from bot_functions import (
     unknown_messages,
 )
 import logging
-import sqlite3
 
 from telegram.botcommand import BotCommand
 from telegram.ext import (
@@ -31,8 +30,8 @@ from telegram.ext import (
     Updater,
 )
 
-from db_functions import db_connect
-from variables import api_token, database
+from db_functions import db_connect, db_intialize
+from CONFIG import api_token
 
 logging.basicConfig(
     filename="logs.log",
@@ -42,26 +41,6 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-
-
-def db_intialize(db: sqlite3.Connection):
-    cur = db.cursor()
-
-    cur = db.execute(database.bot_data)
-
-    cur = db.execute("select * from bot_data")
-
-    if len(cur.fetchall()) == 0:
-        cur = db.execute(
-            """
-            insert into bot_data values(0)
-        """
-        )
-    tables = database.get_tables()
-    for i in tables:
-        db.execute(i)
-    db.commit()
-    db.close()
 
 
 def main():
