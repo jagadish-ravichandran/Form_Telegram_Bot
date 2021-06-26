@@ -1,11 +1,9 @@
 import logging
-import os
 from tabulate import tabulate
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from db_functions import Form, creating_csv_for_each_form, db_connect, extract_form, title_check_db, title_extraction
-from telegram import Update, user
-from telegram.ext import CallbackContext, ConversationHandler
-# from variables import inline_markup
+from db_functions import Form, extract_form, title_extraction
+from telegram import Update
+from telegram.ext import CallbackContext
 
 logging.basicConfig(
     filename="logs.log",
@@ -18,13 +16,14 @@ logger = logging.getLogger(__name__)
 
 def displaying_each_form(update: Update, context: CallbackContext, flist: list) -> str:
     tracker = 1
+    userid = update.effective_user.id
     if context.user_data.get("last_form", None):
         tracker = context.user_data["last_form"]
         context.user_data.clear()
 
     else:
         formid = flist[0][1]
-        userid = update.effective_user.id
+        
         form_list = Form.get_formid(userid)
         for i in form_list:
             if i[0] == formid:
@@ -45,7 +44,7 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
 
         if len(questions) == i[0]:
             # form_dict[title] = questions
-            print("question list : ",questions)
+            # print("question list : ",questions)
             complete_form_text = f"Form {tracker} : \n\n"
             complete_form_text += f"Title : {title}\n"
             complete_form_text += f"Questions : \n"
@@ -73,7 +72,7 @@ def view_query(update : Update,context : CallbackContext):
     formid = int(data.split("_")[1])
     flist = extract_form(formid, userid)
     displaying_each_form(update, context, flist)
-
+    update.effective_message.reply_text("Type /create to create more forms !")
 
 def view_forms_ck(update: Update, context: CallbackContext):
     userid = update.effective_user.id

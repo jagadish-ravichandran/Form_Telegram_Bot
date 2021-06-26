@@ -1,8 +1,9 @@
 
+from bot_functions import beginning
 import logging
 import os
 from tabulate import tabulate
-from db_functions import Answers, User, creating_csv_for_each_form, db_connect, title_check_db, title_extraction
+from db_functions import Answers, User, creating_csv_for_each_form, title_extraction
 from telegram import Update,InlineKeyboardButton, InlineKeyboardMarkup
 
 from telegram.ext import CallbackContext
@@ -39,7 +40,7 @@ def creating_csv_for_answers_for_all_forms(update: Update, context: CallbackCont
         tb = tabulate(total_tab, headers="firstrow", tablefmt="simple")
 
         if update.callback_query:
-            update.callback_query.edit_message_text("Showing answers for the selected form : ")
+            update.callback_query.edit_message_text("Preview and answer csv file will be uploaded !")
         
         update.effective_message.reply_html(f"<pre>Title : {i[2]}\n{tb}!</pre>")
         update.effective_message.reply_document(
@@ -64,6 +65,8 @@ def answer_query(update: Update, context: CallbackContext):
 
     if ans_ck == 0:
         query.edit_message_text("There is no answers for this form!")
+
+    beginning(update, context)
 
 def answer_ck(update: Update, context: CallbackContext):
     userid = update.effective_user.id
