@@ -76,7 +76,7 @@ def main():
                 ],
                 CreationState.RECIEVING_QUESTION_COUNT: [
                     MessageHandler(Filters.command, typing_commands_in_CH),
-                    MessageHandler(Filters.regex("[0-9]"), no_of_questions),
+                    MessageHandler(Filters.regex("^[0-9]*$"), no_of_questions),
                     MessageHandler(
                         Filters.all & ~Filters.regex("Cancel"), invalid_qn_number
                     ),
