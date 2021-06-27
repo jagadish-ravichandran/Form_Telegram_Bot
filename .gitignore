@@ -2,4 +2,4 @@ project_environment/
 __pycache__
 logs.log
 .idea
-.vscode
+.vscode/
