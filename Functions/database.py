@@ -7,7 +7,7 @@ from variables import database
 from telegram import user
 
 logging.basicConfig(
-    filename="logs.log",
+    filename="../logs.log",
     filemode="w",
     format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
     level=logging.DEBUG,
@@ -21,7 +21,7 @@ def show_table(db: sqlite3.Connection, name: str):
 
 
 def db_connect():
-    db_con = sqlite3.connect("form_bot_db")
+    db_con = sqlite3.connect("../form_bot_db")
     return db_con
 
 def db_intialize(db: sqlite3.Connection):

@@ -1,12 +1,11 @@
 import logging
-from tabulate import tabulate
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from db_functions import Form, extract_form, title_extraction
+from Functions.database import Form, extract_form, title_extraction
 from telegram import Update
 from telegram.ext import CallbackContext
 
 logging.basicConfig(
-    filename="logs.log",
+    filename="../logs.log",
     filemode="w",
     format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
     level=logging.DEBUG,

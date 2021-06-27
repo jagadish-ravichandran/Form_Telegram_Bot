@@ -1,9 +1,9 @@
 
-from bot_functions import beginning
+from Functions.bot_callbacks import beginning
 import logging
 import os
 from tabulate import tabulate
-from db_functions import Answers, User, creating_csv_for_each_form, title_extraction
+from Functions.database import Answers, User, creating_csv_for_each_form, title_extraction
 from telegram import Update,InlineKeyboardButton, InlineKeyboardMarkup
 
 from telegram.ext import CallbackContext
@@ -11,7 +11,7 @@ from telegram.ext import CallbackContext
 
 
 logging.basicConfig(
-    filename="logs.log",
+    filename="../logs.log",
     filemode="w",
     format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
     level=logging.DEBUG,

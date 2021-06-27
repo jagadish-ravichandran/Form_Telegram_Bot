@@ -1,15 +1,14 @@
 from constants import CreationState
-from form_functions import displaying_each_form
+from Functions.forms import displaying_each_form
 from telegram.ext import ConversationHandler, CallbackContext
 from telegram import Update
 import logging
-from tabulate import tabulate
 from telegram import (
     ReplyKeyboardRemove,
  
 )
 from variables import cancel_markup
-from db_functions import (
+from Functions.database import (
     Answers,
     Bot,
     Form,
@@ -20,7 +19,7 @@ from db_functions import (
 )
 
 logging.basicConfig(
-    filename="logs.log",
+    filename="../logs.log",
     filemode="w",
     format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
     level=logging.DEBUG,
