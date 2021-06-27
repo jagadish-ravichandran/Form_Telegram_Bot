@@ -1,7 +1,7 @@
 from constants import CreationState
-from answer_functions import answer_ck, answer_query
-from form_functions import view_forms_ck, view_query
-from bot_functions import (
+from Functions.answers import answer_ck, answer_query
+from Functions.forms import view_forms_ck, view_query
+from Functions.bot_callbacks import (
     answering,
     cancel_command,
     creating_form,
@@ -30,7 +30,7 @@ from telegram.ext import (
     Updater,
 )
 
-from db_functions import db_connect, db_intialize
+from Functions.database import db_connect, db_intialize
 from CONFIG import api_token
 
 logging.basicConfig(
