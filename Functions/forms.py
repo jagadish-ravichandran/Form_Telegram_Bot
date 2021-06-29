@@ -4,13 +4,6 @@ from Functions.database import Form, extract_form, title_extraction
 from telegram import Update
 from telegram.ext import CallbackContext
 
-logging.basicConfig(
-    filename="../logs.log",
-    filemode="w",
-    format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
-    level=logging.DEBUG,
-)
-
 logger = logging.getLogger(__name__)
 
 def displaying_each_form(update: Update, context: CallbackContext, flist: list) -> str:

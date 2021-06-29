@@ -10,12 +10,6 @@ from telegram.ext import CallbackContext
 # from variables import inline_markup
 
 
-logging.basicConfig(
-    filename="../logs.log",
-    filemode="w",
-    format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
-    level=logging.DEBUG,
-)
 
 logger = logging.getLogger(__name__)
 
