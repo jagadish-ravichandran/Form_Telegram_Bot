@@ -128,6 +128,8 @@ def start_command(update: Update, context: CallbackContext):
 
 
 def creating_form(update: Update, context: CallbackContext):
+    User.add_user(update.effective_user.id)
+
     update.effective_message.reply_text("Lets create forms !")
     update.effective_message.reply_text(
         "Enter the title for your form : ", reply_markup=cancel_markup
