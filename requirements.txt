@@ -11,5 +11,6 @@ pytz==2021.1
 six==1.16.0
 toml==0.10.2
 tornado==6.1
+tabulate==0.8.9
 tzlocal==2.1
 wrapt==1.12.1
