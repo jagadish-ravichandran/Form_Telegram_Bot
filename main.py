@@ -13,6 +13,7 @@ from Functions.bot_callbacks import (
     no_of_questions,
     questions_started,
     start_command,
+    stats,
     title_of_form,
     typing_commands_in_CH,
     unknown_commands,
@@ -103,6 +104,7 @@ def main():
     d.add_handler(CallbackQueryHandler(pattern = "^answer_*",callback = answer_query))
 
     d.add_handler(CommandHandler("help", help_command))
+    d.add_handler(CommandHandler("stats", stats))
     d.add_handler(MessageHandler(Filters.command, unknown_commands))
     d.add_handler(MessageHandler(Filters.all, unknown_messages))
 
@@ -113,6 +115,7 @@ def main():
             BotCommand("view_forms", "Your Forms"),
             BotCommand("answers", "Answers for your Forms"),
             BotCommand("help", "Available commands"),
+            BotCommand("stats", "Get bot statistics"),
         ]
     )
     updater.start_polling()
