@@ -82,6 +82,13 @@ Available commands :\n
     )
     return ConversationHandler.END
 
+def stats(update: Update, context :CallbackContext):
+    user_list = User.get_all()
+    total_forms = Bot.get_total_forms()
+
+    update.effective_message.reply_text(f"Total users : {len(user_list)}\nTotal forms created : {total_forms}")
+    return
+
 
 def beginning(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
@@ -128,6 +135,7 @@ def start_command(update: Update, context: CallbackContext):
 
 
 def creating_form(update: Update, context: CallbackContext):
+    User.add_user(update.effective_user.id)
     update.effective_message.reply_text("Lets create forms !")
     update.effective_message.reply_text(
         "Enter the title for your form : ", reply_markup=cancel_markup

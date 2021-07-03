@@ -14,7 +14,7 @@ def show_table(db: sqlite3.Connection, name: str):
 
 
 def db_connect():
-    db_con = sqlite3.connect("../form_bot_db")
+    db_con = sqlite3.connect("form_bot.db")
     return db_con
 
 def db_intialize(db: sqlite3.Connection):
@@ -52,6 +52,15 @@ class User: ## Operations done in user_table
             db.commit()
         
         db.close()
+
+    ## get all users
+    @staticmethod
+    def get_all():
+        db = db_connect()
+        cur = db.cursor()
+        cur = db.execute("select user_id from user_table")
+        result = cur.fetchall()
+        return result
 
 
     ### checking whether the user already answered the form
@@ -105,6 +114,15 @@ class User: ## Operations done in user_table
 
 class Bot:  ## Operations done in bot_data table
 
+    @staticmethod
+    def get_total_forms():
+        db = db_connect()
+        cur = db.cursor()
+        cur = db.execute("select total_forms from bot_data")
+        total_forms = cur.fetchone()[0]
+        db.close()
+        return total_forms
+     
     ## increasing total form count
     @staticmethod
     def increase_form_count():
