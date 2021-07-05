@@ -13,6 +13,7 @@ from Functions.bot_callbacks import (
     no_of_questions,
     questions_started,
     start_command,
+    show_menu,
     stats,
     title_of_form,
     typing_commands_in_CH,
@@ -58,6 +59,7 @@ def main():
         ConversationHandler(
             entry_points=[
                 (CommandHandler("create", creating_form)),
+                MessageHandler(Filters.regex('Create 📝'),creating_form),
                 CommandHandler("start", start_command),
             ],
             states={
@@ -105,6 +107,14 @@ def main():
 
     d.add_handler(CommandHandler("help", help_command))
     d.add_handler(CommandHandler("stats", stats))
+
+    d.add_handler(MessageHandler(Filters.regex('🧾 Menu'),show_menu))
+    d.add_handler(MessageHandler(Filters.regex("View 🔎"),view_forms_ck))
+    d.add_handler(MessageHandler(Filters.regex("Answers ✍"),answer_ck))
+    d.add_handler(MessageHandler(Filters.regex('Help ℹ'),help_command))
+    d.add_handler(MessageHandler(Filters.regex('Bot Stats 📈'),stats))
+    
+    
     d.add_handler(MessageHandler(Filters.command, unknown_commands))
     d.add_handler(MessageHandler(Filters.all, unknown_messages))
 
