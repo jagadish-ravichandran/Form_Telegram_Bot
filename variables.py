@@ -1,12 +1,39 @@
-from telegram import ReplyKeyboardMarkup
+from telegram import ReplyKeyboardMarkup, InlineKeyboardButton
 
-cancel_button = [["Cancel"]]
+cancel_button = [["❌ Cancel"]]
 
 
 cancel_markup = ReplyKeyboardMarkup(
     cancel_button, one_time_keyboard=False, resize_keyboard=True
 )
 
+message_developer_button = [InlineKeyboardButton(text = "Contact Developer 👨‍💻 ", url=admin_link)]
+
+menu_button = [['🧾 Menu']]
+
+menu_markup = ReplyKeyboardMarkup(
+    menu_button, one_time_keyboard=False, resize_keyboard=True
+)
+
+menu_elements = [['Create 📝','View 🔎','Answers ✍'],['Help ℹ','Bot Stats 📈']]
+
+me_markup = ReplyKeyboardMarkup(
+    menu_elements,one_time_keyboard=False, resize_keyboard=True,
+)
+
+## replace admin_link with your username (https://t.me/username)
+admin_link = ADMIN_LINK 
+
+
+help_message = """I am <b>Form Bot</b> developed by ADMIN_USERNAME ❤️\n
+My available commands 🔰\n
+  /start - To <b>start</b> the bot
+  /create - To <b>create your own form</b>
+  /view_forms - To <b>view your created forms</b>
+  /answers - To <b>retrieve answers</b> for your created forms
+  /help - To show this <b>help message</b>
+  /stats - To show <b>bot statistics</b>
+    """
 
 class database:
 
