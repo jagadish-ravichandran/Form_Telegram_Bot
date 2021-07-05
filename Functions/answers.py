@@ -58,19 +58,22 @@ def answer_query(update: Update, context: CallbackContext):
     ans_ck = creating_csv_for_answers_for_all_forms(update, context, userid,formid)
 
     if ans_ck == 0:
-        query.edit_message_text("There is no answers for this form!")
+        query.edit_message_text("There is <b>no answers</b> for this form 😔",parse_mode='HTML')
 
     beginning(update, context)
 
 def answer_ck(update: Update, context: CallbackContext):
     userid = update.effective_user.id
     numbering = []
-    title_text = "Your forms :\n"
     title_list = title_extraction(userid)
+    if title_list == []:
+        update.effective_message.reply_html("You have <b>no forms</b> 😓\nTry creating forms !")
+        return
+    title_text = "<b>Your forms</b> 🗒️\n\n"
     count = 1
     temp_list = []
     for form_id, title in title_list:
-        title_text += f"{count}. {title}\n"
+        title_text += f"📌 {count}. {title}\n"
         
         temp_list.append(InlineKeyboardButton(text=str(count), callback_data="answer_" + str(form_id)))
         
@@ -83,6 +86,6 @@ def answer_ck(update: Update, context: CallbackContext):
     if temp_list:
         numbering.append(temp_list)
  
-    update.effective_message.reply_text(title_text, reply_markup= InlineKeyboardMarkup(numbering))
+    update.effective_message.reply_html(title_text, reply_markup= InlineKeyboardMarkup(numbering))
 
 
