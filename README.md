@@ -1,5 +1,7 @@
 
 
+
+
 ## **FORM TELEGRAM BOT**
 
 A *open-source bot* is developed for the purpose of creating and answering forms like Google Forms.
@@ -18,8 +20,10 @@ Check out the bot [here](https://telegram.me/form_telebot)
 
 <details>
 
-<summary>How to use ?
+<summary>
+How to use ?
 </summary>
+
 1. Start the [bot](https://telegram.me/form_telebot)
 
 2. Press **Menu** to get the options
@@ -38,14 +42,19 @@ Check out the bot [here](https://telegram.me/form_telebot)
     > It replies with the form details and share link
 
 6. Select **Answers** button 
+
 </details>
 
 
 <details>
 
-<summary>How to deploy ?</summary>
+<summary>
+How to deploy ?
+</summary>
 
+	
 Developers either use *heruko like online server* or make their computer as server for this bot to deploy by :
+	
 >    Ensure you have `python3` installed 
 
 >    Clone this repository to your machine
@@ -56,8 +65,9 @@ Developers either use *heruko like online server* or make their computer as serv
 
 >    Now, go to @BotFather in telegram, create a new bot and get the bot token
 
->Enter the bot token and your username in `CONFIG.py` 
+>    Enter the bot token and your username in `CONFIG.py` 
 
-> Run `python3 main.py`
+>    Run `python3 main.py`
 	
 </details>
+
