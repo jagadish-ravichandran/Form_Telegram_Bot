@@ -13,9 +13,9 @@ Check out the bot [here](https://telegram.me/form_telebot)
 ## **Features :**
 
  - Users can able to create forms and maintain them
- -  Users can share the generated form link to others to get responses
+ - Users can share the generated form link to others to get responses
  - Users can able to answer specific form by using the link
- -  Users can able to get answers for their forms in `.csv` file 
+ - Users can able to get answers for their forms in `.csv` file 
 
 
 ## **How to use ?**
@@ -41,7 +41,6 @@ Check out the bot [here](https://telegram.me/form_telebot)
 
 
 ## **How to deploy ?**
-
 	
 Developers either use *heruko like online server* or make their computer as server for this bot to deploy by :
 	
