@@ -1,4 +1,5 @@
 from telegram import ReplyKeyboardMarkup, InlineKeyboardButton
+from CONFIG import admin_link
 
 cancel_button = [["❌ Cancel"]]
 
@@ -20,10 +21,6 @@ menu_elements = [['Create 📝','View 🔎','Answers ✍'],['Help ℹ','Bot Stat
 me_markup = ReplyKeyboardMarkup(
     menu_elements,one_time_keyboard=False, resize_keyboard=True,
 )
-
-## replace admin_link with your username (https://t.me/username)
-admin_link = ADMIN_LINK 
-
 
 help_message = """I am <b>Form Bot</b> developed by ADMIN_USERNAME ❤️\n
 My available commands 🔰\n
