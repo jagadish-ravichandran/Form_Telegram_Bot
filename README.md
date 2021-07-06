@@ -23,7 +23,7 @@ Check out the bot [here](https://telegram.me/form_telebot)
 
  1. Start the [bot](https://telegram.me/form_telebot)
 
- 2. Press **Menu** button to get the options or press Menu (blue) to get available commands
+ 2. Press **Menu** button to get the options
 
  3. You find various menu buttons as given below
 
@@ -32,7 +32,7 @@ Check out the bot [here](https://telegram.me/form_telebot)
 
     > Atlast, a link will be generated for the current form which you can share to others and get their response
     
-    > At anytime you want to cancel the process, press the Cancel the button
+    > At anytime you want to cancel the process, press the **Cancel** the button
     
  5. Select **View** button to view your forms
     > It shows all the titles and select the desired form by tapping the corresponding number below
@@ -52,9 +52,9 @@ Check out the bot [here](https://telegram.me/form_telebot)
 
  1. Get the link from the creator of form and start the bot ([example form](https://telegram.me/form_telebot?start=576048895_17))
  
- 2. The details of the desired form is shown and answer the questions one by one
+ 2. The details of the desired form is shown and **answer the questions one by one**
  
- 3. At anytime you want to cancel the process, press Cancel button
+ 3. At anytime you want to cancel the process, press **Cancel** button
  
  4. When finish typing answers, the answers are saved to the form 
  
