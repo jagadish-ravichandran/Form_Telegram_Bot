@@ -18,11 +18,7 @@ Check out the bot [here](https://telegram.me/form_telebot)
  -  Users can able to get answers for their forms in `.csv` file 
 
 
-<details>
-
-<summary>
-How to use ?
-</summary>
+## **How to use ?**
 
 1. Start the [bot](https://telegram.me/form_telebot)
 
@@ -43,14 +39,8 @@ How to use ?
 
 6. Select **Answers** button 
 
-</details>
 
-
-<details>
-
-<summary>
-How to deploy ?
-</summary>
+## **How to deploy ?**
 
 	
 Developers either use *heruko like online server* or make their computer as server for this bot to deploy by :
@@ -69,5 +59,4 @@ Developers either use *heruko like online server* or make their computer as serv
 
 >    Run `python3 main.py`
 	
-</details>
 
