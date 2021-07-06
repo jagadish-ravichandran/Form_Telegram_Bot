@@ -17,30 +17,45 @@ Check out the bot [here](https://telegram.me/form_telebot)
 
 
 ## **How to use ?**
+**Creating a form:** 
 
-1. Start the [bot](https://telegram.me/form_telebot)
+ 1. Start the [bot](https://telegram.me/form_telebot)
 
-2. Press **Menu** button to get the options or press Menu (blue) to get available commands
+ 2. Press **Menu** button to get the options or press Menu (blue) to get available commands
 
-3. You find various menu buttons as given below
+ 3. You find various menu buttons as given below
 
-4. Select **Create** button to create your own form
+ 4. Select **Create** button to create your own form
     > Enter your form title, no of questions and type the questions one by one
 
     > Atlast, a link will be generated for the current form which you can share to others and get their response
-5. Select **View** button to view your forms
+    
+    > At anytime you want to cancel the process, press the Cancel the button
+    
+ 5. Select **View** button to view your forms
     > It shows all the titles and select the desired form by tapping the corresponding number below
 
     > It provides the form details and share button for selecting the contact to share
 
-6. Select **Answers** button to get answers for your forms
+ 6. Select **Answers** button to get answers for your forms
     > It shows all the titles and select the desired form by tapping the corresponding number below
     
     >It provides preview and .csv file for the answers of the selected form
     
-7.  Select **Help** button to show the available commands
-  
-8.  Select **Bot Stats** to get current bot statistics 
+ 7.  Select **Help** button to show the available commands
+
+ 8.  Select **Bot Stats** to get current bot statistics 
+
+**Answering a form :**
+
+ 1. Get the link from the creator of form and start the bot ([example form](https://telegram.me/form_telebot?start=576048895_17))
+ 
+ 2. The details of the desired form is shown and answer the questions one by one
+ 
+ 3. At anytime you want to cancel the process, press Cancel button
+ 
+ 4. When finish typing answers, the answers are saved to the form 
+ 
 
 ## **How to deploy ?**
 	
@@ -59,5 +74,3 @@ Developers either use *heruko like online server* or make their computer as serv
 6. Enter the bot token and your username in `CONFIG.py` 
 
 7.   Run `python3 main.py`
-	
-
