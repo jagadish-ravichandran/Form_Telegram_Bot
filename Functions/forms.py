@@ -3,6 +3,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from Functions.database import Form, extract_form, title_extraction
 from telegram import Update
 from telegram.ext import CallbackContext
+from variables import me_markup
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +40,7 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
             # print("question list : ",questions)
             complete_form_text = f"<b>Form {tracker}</b>\n"
             complete_form_text += f"<b>{title}</b>\n\n"
+            # complete_form_text += f"Questions : \n"
             count = 1
             for j in questions:
                 complete_form_text += f"➡️ {count}. {j}\n\n"
@@ -46,9 +48,10 @@ def displaying_each_form(update: Update, context: CallbackContext, flist: list) 
             complete_form_text += "🔗 Link: "
             form_link = f"https://t.me/{context.bot.username}?start={userid}_{id}"
             complete_form_text += form_link
-            
+
             fl_inline_bt = [InlineKeyboardButton(text = "Share this form 🚀",url = f"https://t.me/share/?url={form_link}")]
             fl_inline_mk = InlineKeyboardMarkup([fl_inline_bt])
+
             if update.callback_query == None:
                 update.effective_message.reply_html(complete_form_text,disable_web_page_preview=True,reply_markup=fl_inline_mk)
             else:
@@ -66,7 +69,6 @@ def view_query(update : Update,context : CallbackContext):
     formid = int(data.split("_")[1])
     flist = extract_form(formid, userid)
     displaying_each_form(update, context, flist)
-    update.effective_message.reply_text("Type /create to create more forms !")
 
 def view_forms_ck(update: Update, context: CallbackContext):
     userid = update.effective_user.id
@@ -76,6 +78,7 @@ def view_forms_ck(update: Update, context: CallbackContext):
         update.effective_message.reply_html("You have <b>no forms</b> 😓\nTry creating forms !")
         return
     title_text = "<b>Your forms </b>🗒️\n\n"
+    
     count = 1
     temp_list = []
     for form_id, title in title_list:
