@@ -51,6 +51,12 @@ def answer_query(update: Update, context: CallbackContext):
     query = update.callback_query
     data = query.data
     userid = update.effective_user.id
+    is_group = update.callback_query.message.reply_to_message
+    if is_group:
+        userid = is_group.from_user.id
+        # print(userid)
+    # print(userid)
+    # print(update.callback_query.message.reply_to_message)
     formid = int(data.split("_")[1])
     # print(formid)
     query.answer("Displaying answers")
