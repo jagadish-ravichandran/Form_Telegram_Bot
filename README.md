@@ -21,7 +21,7 @@ Check out the bot [here](https://telegram.me/formspot_bot)
 ## **How to use ?**
 **Creating a form:** 
 
- 1. Start the [bot](https://telegram.me/form_telebot)
+ 1. Start the [bot](https://telegram.me/formspot_bot)
 
  2. Press **Menu** button to get the options
 
@@ -50,7 +50,7 @@ Check out the bot [here](https://telegram.me/formspot_bot)
 
 **Answering a form :**
 
- 1. Get the link from the creator of form and start the bot ([example form](https://telegram.me/form_telebot?start=576048895_17))
+ 1. Get the link from the creator of form and start the bot
  
  2. The details of the desired form is shown and **answer the questions one by one**
  
