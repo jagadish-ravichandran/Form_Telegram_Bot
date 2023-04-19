@@ -6,7 +6,7 @@
 
 A *open-source bot* is developed for the purpose of creating and answering forms like Google Forms.
 
-Check out the bot [here](https://telegram.me/form_telebot)
+Check out the bot [here](https://telegram.me/formspot_bot)
 
 <img src= "https://github.com/jagadish-ravichandran/Form_Telegram_Bot/blob/main/images/bot.jpg" width =150px>
 
