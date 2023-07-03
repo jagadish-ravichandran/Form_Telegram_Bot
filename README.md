@@ -2,11 +2,9 @@
 
 
 
-## **FORM TELEGRAM BOT**(Still Active)
+## **FORM TELEGRAM BOT**
 
 A *open-source bot* is developed for the purpose of creating and answering forms like Google Forms.
-
-This is the limited version - [Form_telebot](https://telegram.me/form_telebot)
 
 For advanced, try our new bot - [Formspot_bot](https://telegram.me/formspot_bot) 
 
