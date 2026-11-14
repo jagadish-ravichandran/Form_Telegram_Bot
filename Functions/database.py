@@ -227,7 +227,7 @@ def title_check_db(user_id, title):
 def title_extraction(user_id):
     db = db_connect()
     cur = db.cursor()
-    cur = db.execute(f"select form_id, form_title from form_table where user_id={user_id}")
+    cur.execute("select form_id, form_title from form_table where user_id = ?", (user_id,))
     return cur.fetchall()
 
 
